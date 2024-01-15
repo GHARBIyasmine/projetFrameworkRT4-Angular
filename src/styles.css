@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~font-awesome/css/font-awesome.css";
+@import 'ngx-toastr/toastr';
+
+@font-face {
+    font-family: 'Mona Sans';
+    src: url('assets/fonts/Mona-Sans.woff2') format('woff2'),
+         url('assets/fonts/Mona-Sans.woff2') format('woff');
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Mona Sans';
+    src: url('assets/fonts/Mona-Sans.woff2') format('woff2'),
+         url('assets/fonts/Mona-Sans.woff2') format('woff');
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  html {
+     font-family: 'Mona Sans'!important;
+   }
+   /*
+   html, input, select, textarea, button, option {
+    font-family: "DIN Next", system-ui, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif; 
+   
+   -ms-text-size-adjust:100%;
+   -webkit-text-size-adjust:100%;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   font-size: 16px;
+   line-height: 1.5rem;
+   color: #293845;
+}*/
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
