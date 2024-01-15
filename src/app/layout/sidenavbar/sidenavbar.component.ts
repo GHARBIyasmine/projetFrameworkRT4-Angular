@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { SidenavbarService } from './services/sidenavbar.service';
 import { SVG } from 'src/assets/svg/icons.svg';
-import { APP_ROUTES } from '../config/app-routes.config';
+
 import { Router } from '@angular/router';
+import { APP_ROUTES } from 'src/app/config/app-routes.config';
 
 @Component({
   selector: 'app-sidenavbar',

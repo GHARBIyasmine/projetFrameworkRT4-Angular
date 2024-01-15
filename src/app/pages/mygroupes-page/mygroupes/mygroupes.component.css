@@ -25,4 +25,7 @@
     background-color: #d5d5d597
 }
 
-
+a{
+    color: initial; 
+  text-decoration: none;
+}

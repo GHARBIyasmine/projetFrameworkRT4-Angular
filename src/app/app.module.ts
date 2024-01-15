@@ -6,20 +6,24 @@ import { AppComponent } from './app.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { SidenavbarComponent } from './sidenavbar/sidenavbar.component';
-import { TopheaderComponent } from './topheader/topheader.component';
-import { UserprofileComponent } from './userprofile/userprofile.component';
+
 
 import { BreadcrumbsModule } from '@exalif/ngx-breadcrumbs';
-import { MygroupesComponent } from './mygroupes-page/mygroupes/mygroupes.component';
-import { MygroupesCardComponent } from './mygroupes-page/mygroupes-card/mygroupes-card.component';
-import { ListComponent } from './components/list/list.component';
-import { TagComponent } from './components/tag/tag.component';
-import { InboxComponent } from './inbox-page/inbox/inbox.component';
-import { ExploreComponent } from './explore-page/explore/explore.component';
-import { AgendaComponent } from './agenda-page/agenda/agenda.component';
-import { SettingsComponent } from './settings-page/settings/settings.component';
-import { GroupeComponent } from './mygroupes-page/groupe/groupe.component';
+
+import { ListComponent } from './shared/components/list/list.component';
+import { TagComponent } from './shared/components/tag/tag.component';
+import { PopupComponent } from './shared/components/popup/popup.component';
+import { MygroupesComponent } from './pages/mygroupes-page/mygroupes/mygroupes.component';
+import { MygroupesCardComponent } from './pages/mygroupes-page/mygroupes-card/mygroupes-card.component';
+import { InboxComponent } from './pages/inbox-page/inbox/inbox.component';
+import { ExploreComponent } from './pages/explore-page/explore/explore.component';
+import { AgendaComponent } from './pages/agenda-page/agenda/agenda.component';
+import { SettingsComponent } from './pages/settings-page/settings/settings.component';
+import { GroupeComponent } from './pages/mygroupes-page/groupe/groupe.component';
+import { SidenavbarComponent } from './layout/sidenavbar/sidenavbar.component';
+import { TopheaderComponent } from './layout/topheader/topheader.component';
+import { UserprofileComponent } from './layout/userprofile/userprofile.component';
+
 
 
 @NgModule({
@@ -37,6 +41,7 @@ import { GroupeComponent } from './mygroupes-page/groupe/groupe.component';
     AgendaComponent,
     SettingsComponent,
     GroupeComponent,
+    PopupComponent,
     
    
   ],

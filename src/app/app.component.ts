@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { SidenavbarService } from './sidenavbar/services/sidenavbar.service';
+
 import { Observable } from 'rxjs';
+import { SidenavbarService } from './layout/sidenavbar/services/sidenavbar.service';
 
 @Component({
   selector: 'app-root',
