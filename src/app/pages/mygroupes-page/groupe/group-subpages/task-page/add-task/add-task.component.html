@@ -1,0 +1,49 @@
+<div mat-dialog-header class="dialog-header">
+    <div class="title"><h4>Create a New Task</h4></div>
+    <button type="button" class="close-button" (click)="close()">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="30" height="37" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+  
+  <div mat-dialog-content class="content">
+    <img src="assets/svg/Task.svg" >
+    <form #taskForm="ngForm" (ngSubmit)="submitForm(taskForm)" class="form-container">
+      <mat-form-field appearance="outline" class="form-group">
+        <mat-label for="taskDescription">Task Description:</mat-label>
+        <input
+          matInput
+          type="text"
+          id="taskDescription"
+          name="taskDescription"
+          [(ngModel)]="formData.taskDescription"
+          #taskDescription="ngModel"
+          required
+          minlength="2"
+          maxlength="20"
+        />
+        <mat-hint><small>Enter 2 to 20 characters</small></mat-hint>
+        <mat-error *ngIf="taskDescription.invalid && taskDescription.touched && (taskDescription.errors?.['required'] || taskDescription.errors?.['minlength'] || taskDescription.errors?.['maxlength'])">
+          Task description is required and must be between 2 and 20 characters.
+        </mat-error>
+      </mat-form-field>
+  <br><br>
+      <mat-form-field appearance="outline" class="form-group">
+        <mat-label for="assignee">Assign To:</mat-label>
+        <mat-select
+          matInput
+          id="assignee"
+          name="assignee"
+          [(ngModel)]="formData.assignee"
+          #assignee="ngModel"
+        >
+        <mat-option *ngFor="let option of assigneeOptions" [value]="option">{{ option }}</mat-option>
+
+        </mat-select>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" [disabled]="taskForm.invalid" class="submit-btn">Create Task</button>
+    </form>
+  </div>
+  

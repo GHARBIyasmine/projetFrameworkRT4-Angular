@@ -1,0 +1,24 @@
+
+    <div class="nav">
+        <div class="tabs" >
+        <ul>
+            <li *ngFor="let tab of tabs">
+                <a 
+                aria-current="page"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}"
+                [routerLink]="[tab.route] 
+                         "
+                >
+                <span class ="icon" [innerHTML]="tab.icon"></span>
+        
+                <span class="text">{{ tab.text }}</span>
+
+
+            </a></li>
+        </ul>
+    </div>
+      </div>
+    
+ 
+  

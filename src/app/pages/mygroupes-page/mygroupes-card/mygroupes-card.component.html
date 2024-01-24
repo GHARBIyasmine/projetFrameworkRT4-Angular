@@ -1,10 +1,23 @@
-<div class="card" (click)="onCardClick()">
+<div class="card" >
     <div class="card-top-head">
-      <app-tag tagValue="Public" [tagStyle]="'public'"/>
+      <div class="top-head-details">
+      <div class="group-image"></div>
+      <app-tag [tagValue]="group.groupType | titlecase" [tagStyle]="group.groupType | lowercase"/>
+     </div>
+     <div class="dots" appClickOutside [isOpen]="isDotsSubmenuActive" (clickOutside)="clickedOutside(); false">
+      <button class="dots-btn" type="button" (click)="toggleDotsSubmenu()" [ngClass]="{'active': isDotsSubmenuActive}">
       
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="20px" height="27px" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
+      </svg>
+      
+    </button>
+      <div class="submenu" *ngIf="isDotsSubmenuActive">
+          <div class = "submenu-item" >Leave group</div>
+      </div>
     </div>
-    <div class="card-image rounded-circle"></div>
-    <div class="card-body">
-      <h3>Groupe name</h3>
+    </div>
+    <div class="card-body" (click)="onCardClick()">
+      <h3>{{ group.groupName }}</h3>
     </div>
   </div>
