@@ -1,9 +1,12 @@
 <div class="user-details">
-    <div class="user-avatar ">
-    YG
+  <!-- In any other component's template -->
+  <!-- Image or Avatar -->
+  <div class="col-sm-4">
+    <app-picture-profile-item [username]="user.username" [photo]="user.imageUrl"></app-picture-profile-item>
   </div>
+
   <div class="details">
-    <h4>Yasmine Gharbi</h4>
-    <span class="text-sm text-gray-600">yasmine.gharbi@insat.ucar.tn</span>
+    <h4>{{user.username}}</h4>
+    <span class="text-sm text-gray-600">{{user.email}}</span>
   </div>
 </div>

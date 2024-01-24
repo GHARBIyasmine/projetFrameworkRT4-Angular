@@ -1,0 +1,14 @@
+
+<div class="main">
+  <app-sidenavbar [style.width.px]="(sidenavbarWidth$ | async) ? 65 : 240"/>
+  <div class="content">
+    <div class="content-header">
+      <app-topheader/>
+    </div>
+    <div class="content-body">
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+
+</div>

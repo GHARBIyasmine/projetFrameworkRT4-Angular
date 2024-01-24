@@ -23,6 +23,15 @@ import { GroupeComponent } from './pages/mygroupes-page/groupe/groupe.component'
 import { SidenavbarComponent } from './layout/sidenavbar/sidenavbar.component';
 import { TopheaderComponent } from './layout/topheader/topheader.component';
 import { UserprofileComponent } from './layout/userprofile/userprofile.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { ProfileItemComponent } from './pages/settings-page/profile-item/profile-item.component';
+import { PictureProfileItemComponent } from './shared/components/picture-profile-item/picture-profile-item.component';
+import {LoginComponent} from './view/dashboard-view/auth-view/login-page/login.component'
+import {RegisterComponent} from './view/dashboard-view/auth-view/register-page/register.component';
+import { SimpleLayoutComponent } from './layout/simple-layout/simple-layout.component';
+import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 
 
 
@@ -42,15 +51,24 @@ import { UserprofileComponent } from './layout/userprofile/userprofile.component
     SettingsComponent,
     GroupeComponent,
     PopupComponent,
-    
-   
+    ProfileItemComponent,
+    PictureProfileItemComponent,
+    LoginComponent,
+    RegisterComponent,
+    SimpleLayoutComponent,
+    MainLayoutComponent,
+
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     ToastrModule.forRoot(),
-    BreadcrumbsModule.forRoot()
+    BreadcrumbsModule.forRoot(),
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
   ],
   providers: [],
   bootstrap: [AppComponent]
