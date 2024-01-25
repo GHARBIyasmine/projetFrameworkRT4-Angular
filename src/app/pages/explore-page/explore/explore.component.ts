@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
 })
 export class ExploreComponent {
 
+  tab = [1,2,3,4,5,1,1,1,1,1,1,1,1,1,1]
 
 }

@@ -1,0 +1,41 @@
+<div mat-dialog-header class="dialog-header">
+   <div class="title"><h4> Join a group with a code</h4></div>
+   <button type="button" class="close-button" (click)="close()">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="30" height="37" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+        </svg>
+</button>
+</div>
+
+<div mat-dialog-content class="content" >
+    <img src="assets/svg/Collab.svg" >
+  <form #joinForm="ngForm" (ngSubmit)="submitForm(joinForm)" class="form-container">
+    <mat-form-field appearance="outline" class="form-group">
+      <mat-label for="inputField">Enter group code:</mat-label>
+      <input
+        matInput
+        type="text"
+        id="inputField"
+        name="inputField"
+        [(ngModel)]="formData.inputField"
+        #inputField="ngModel"
+        required
+        minlength="7"
+        maxlength="7"
+      />
+      <mat-hint><small>Enter 7 characters</small></mat-hint>
+      <mat-error *ngIf="inputField.invalid && inputField.touched && inputField.errors?.['required']">Input is required.</mat-error>
+      <mat-error *ngIf="inputField.invalid && inputField.dirty && inputField.errors?.['minlength'] || inputField.errors?.['maxlength']">
+        Input must be exactly 7 characters.
+      </mat-error>
+      <!-- <div *ngIf="inputField.invalid && (inputField.dirty || inputField.touched)">
+        <mat-error *ngIf="inputField.errors?.['required']">Input is required.</mat-error>
+        <mat-error *ngIf="inputField.errors?.['minlength'] || inputField.errors?.['maxlength']">
+          Input must be exactly 7 characters.
+        </mat-error>
+    </div> -->
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" [disabled]="joinForm.invalid" class="submit-btn">Submit</button>
+  </form>
+</div>

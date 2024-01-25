@@ -1,16 +1,22 @@
 
 <div class="header">
   <h2>My Groupes</h2>
-  <div class="plus-icon">
-    <a [routerLink]="[{ outlets: { popup: ['popup'] } }]">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="30" height="37" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-    </svg>
-  </a>
+  <div class="wrapper" appClickOutside [isOpen]="isSubMenuActive" (clickOutside)="clickedOutside(); false">
+    <button type="button" class="plus-icon" (click)="toggleSubMenu()" [ngClass]="{'active': isSubMenuActive}">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="30" height="37" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+      </svg>
+      
+    </button>
+    <app-group-membership-submenu *ngIf="isSubMenuActive" />
   </div>
 </div>
-<app-list [items]="tab">
+
+<app-list [items]="groupes">
     <ng-template let-item #itemTemplate>
-        <app-mygroupes-card [data]="item"></app-mygroupes-card>
+        <app-mygroupes-card [group]="item"></app-mygroupes-card>
       </ng-template>
 </app-list>
+
+

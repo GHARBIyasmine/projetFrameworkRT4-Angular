@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { SidenavbarService } from './services/sidenavbar.service';
 import { SVG } from 'src/assets/svg/icons.svg';
+
 import { APP_ROUTES } from 'src/app/config/app-routes.config';
 
 @Component({
@@ -10,8 +11,11 @@ import { APP_ROUTES } from 'src/app/config/app-routes.config';
   styleUrls: ['./sidenavbar.component.css']
 })
 export class SidenavbarComponent {
+
   constructor(private sanitizer: DomSanitizer,
               private sideNavBarService: SidenavbarService,
+
+
               ) {
 
   }
@@ -19,7 +23,6 @@ export class SidenavbarComponent {
 
   public activeIndex: number | null = null;
   public isSideBarCollapsed = false;
-
 
   togglebtn =  this.sanitizer.bypassSecurityTrustHtml(SVG.arrow);
   public menus = [
@@ -40,6 +43,9 @@ export class SidenavbarComponent {
           { text: 'Settings',
           icon: this.sanitizer.bypassSecurityTrustHtml(SVG.settings) ,
           route : APP_ROUTES.settings},
+
+          {text: 'Log Out',
+          icon: this.sanitizer.bypassSecurityTrustHtml(SVG.logOut) }
   ];
 
   toggleSidebar(): void {

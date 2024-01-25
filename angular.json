@@ -25,7 +25,11 @@
               "src/assets"
             ],
             "styles": [
+<<<<<<< HEAD
               "node_modules/angular-calendar/css/angular-calendar.css",
+=======
+              "src/custom-theme.scss",
+>>>>>>> e97170827a3125c4f758c72de5a0a33aee9c1fc4
               "src/styles.css"
             ],
             "scripts": []

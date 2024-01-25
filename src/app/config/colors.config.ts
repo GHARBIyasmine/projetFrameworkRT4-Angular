@@ -4,3 +4,8 @@ export const TAG_COLORS = {
     private : {color: '#573043', backgroundColor: '#F5E0E9'},
     detail : {color: '#314B5D',backgroundColor: '#D3E5EF'}
 }
+
+export const APP_COLORS = {
+    accentColor : {color:'#a22042', backgroundColor: '#a2204332'}
+
+}
