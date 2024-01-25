@@ -440,7 +440,7 @@ label {
 
 label.error {
   position: relative;
-  background: url("../../../../assets/auth/images/unchecked.png") no-repeat;
+  background: url("../../../../assets/images/auth-images/unchecked.png") no-repeat;
   background-position-y: 3px;
   padding-left: 20px;
   display: block;

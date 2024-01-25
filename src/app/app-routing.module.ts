@@ -11,20 +11,25 @@ import { GroupeComponent } from './pages/mygroupes-page/groupe/group-view/groupe
 import { TaskboardComponent } from './pages/mygroupes-page/groupe/group-subpages/task-page/taskboard/taskboard.component';
 import { DashboardViewComponent } from './view/dashboard-view/dashboard-view.component';
 import { Nf404Component } from './view/error-view/nf404/nf404.component';
+import { LoginComponent } from './view/auth-view/login-page/login.component';
+import { RegisterComponent } from './view/auth-view/register-page/register.component';
 
 
 
 
 const routes: Routes = [
 
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'dashboard', component: DashboardViewComponent, 
   children: 
-    [
-        { path: APP_ROUTES.groupes,
+    [   { path: '', redirectTo: APP_ROUTES.groupes, pathMatch: 'full'},
+        { path: APP_ROUTES.groupes, 
           children: [
             { path: '', component: MygroupesComponent }, 
             { path: APP_ROUTES.group, component: GroupeComponent,
               children:[
+                  { path: '', redirectTo: GROUP_ROUTES.tasks, pathMatch: 'full'},
                   { path: GROUP_ROUTES.tasks, component: TaskboardComponent},
             ]},
           ],
@@ -42,6 +47,7 @@ const routes: Routes = [
   
     ]
   },
+  
   { path: '**' , component:Nf404Component}
 
 ];

@@ -1,5 +1,6 @@
 <div class="col-sm-5">
-  <div *ngIf="!user.imageUrl; else noImage" class="circle" [style.backgroundImage]="'url(' + avatarUrl + ')'"></div>
+  <div *ngIf="!user.imageUrl; else noImage" class="circle" [style.backgroundImage]="'url(' + avatarUrl + ')'"
+  [ngStyle]="{width: size + 'px', height: size + 'px'}"></div>
   <ng-template #noImage>
       <img [src]="user.imageUrl" class="circle" >
   </ng-template>

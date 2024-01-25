@@ -1,25 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Peer+</title>
 
-
-</head>
-<body>
 <div class="main">
 <section class="sign-in">
   <div class="container">
     <div class="signin-content">
       <div class="signin-image">
-        <figure><img src="assets/auth/images/signin.jpg" alt="sing up image"></figure>
+        <figure><img src="assets/images/auth-images/signin.jpg" alt="sing up image"></figure>
         <a href="#" class="signup-image-link" (click)="redirectToRegister()" >Create an account</a>
       </div>
 
       <div class="signin-form">
-        <h2 class="form-title">Sign in</h2>
+        <h2 class="form-title">Log in</h2>
         <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="register-form" id="login-form">
           <!-- email Field -->
           <div class="form-group">
@@ -73,5 +63,4 @@
 </section>
 </div>
 <!-- JS -->
-</body>
-</html>
+

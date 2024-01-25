@@ -1,11 +1,11 @@
 import { Component, Input, OnInit, OnDestroy, SimpleChanges } from '@angular/core';
-import { AvatarGeneratorService } from "../../../service/avatar-generator.service";
+import { AvatarGeneratorService } from "../../../core/services/avatar-generator.service";
 import { SVG } from "../../../../assets/svg/icons.svg";
 import { DomSanitizer } from "@angular/platform-browser";
 import { ToastrService } from "ngx-toastr";
-import { MockProfilePictureService } from "../../../service/mock-profile-picture.service";
-import { UserService } from "../../../service/user.service";
-import {Person} from "../../../model/person";
+import { MockProfilePictureService } from "../../../core/services/mock-profile-picture.service";
+import { UserService } from "../../../core/services/user.service";
+import {Person} from "../../../core/models/person";
 import {Subscription} from "rxjs";
 
 @Component({
@@ -16,7 +16,9 @@ import {Subscription} from "rxjs";
 export class PictureProfileItemComponent implements OnInit {
   @Input() username: string = '';
   @Input() photo: string = '';
+  @Input() size: number = 50
   avatarUrl: string = '';
+
 
   private subscriptions = new Subscription();
 

@@ -2,9 +2,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ToastrService } from "ngx-toastr";
-import { Person } from "../../../model/person";
-import { UserService } from "../../../service/user.service";
-import { MockProfilePictureService } from "../../../service/mock-profile-picture.service";
+import { Person } from "../../../core/models/person";
+import { UserService } from "../../../core/services/user.service";
+import { MockProfilePictureService } from "../../../core/services/mock-profile-picture.service";
 import { SVG } from 'src/assets/svg/icons.svg';
 
 @Component({

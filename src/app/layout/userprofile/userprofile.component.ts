@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from "../../service/user.service";
-import {Person} from "../../model/person";
+import {UserService} from "../../core/services/user.service";
+import {Person} from "../../core/models/person";
 
 @Component({
   selector: 'app-userprofile',

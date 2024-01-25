@@ -53,8 +53,8 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { ReactiveFormsModule} from "@angular/forms";
 import { ProfileItemComponent } from './pages/settings-page/profile-item/profile-item.component';
 import { PictureProfileItemComponent } from './shared/components/picture-profile-item/picture-profile-item.component';
-import {LoginComponent} from './view/dashboard-view/auth-view/login-page/login.component'
-import {RegisterComponent} from './view/dashboard-view/auth-view/register-page/register.component';
+import {LoginComponent} from './view/auth-view/login-page/login.component'
+import {RegisterComponent} from './view/auth-view/register-page/register.component';
 
 
 
