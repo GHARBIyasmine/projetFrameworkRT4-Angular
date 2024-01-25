@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { APP_ROUTES, GROUP_ROUTES } from './config/app-routes.config';
@@ -13,7 +14,9 @@ import { Nf404Component } from './view/error-view/nf404/nf404.component';
 
 
 
+
 const routes: Routes = [
+
   { path: 'dashboard', component: DashboardViewComponent, 
   children: 
     [
@@ -25,18 +28,22 @@ const routes: Routes = [
                   { path: GROUP_ROUTES.tasks, component: TaskboardComponent},
             ]},
           ],
+
         
         
         },
         
+
         { path: APP_ROUTES.inbox, component: InboxComponent },
         { path: APP_ROUTES.explore, component: ExploreComponent  },
         { path: APP_ROUTES.agenda, component: AgendaComponent },
         { path: APP_ROUTES.settings, component: SettingsComponent},
+
   
     ]
   },
   { path: '**' , component:Nf404Component}
+
 ];
 
 @NgModule({

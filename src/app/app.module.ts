@@ -48,6 +48,19 @@ import { DashboardViewComponent } from './view/dashboard-view/dashboard-view.com
 import { Nf404Component } from './view/error-view/nf404/nf404.component';
 
 
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { ReactiveFormsModule} from "@angular/forms";
+import { ProfileItemComponent } from './pages/settings-page/profile-item/profile-item.component';
+import { PictureProfileItemComponent } from './shared/components/picture-profile-item/picture-profile-item.component';
+import {LoginComponent} from './view/dashboard-view/auth-view/login-page/login.component'
+import {RegisterComponent} from './view/dashboard-view/auth-view/register-page/register.component';
+
+
+
+
+
+
 
 
 @NgModule({
@@ -65,6 +78,12 @@ import { Nf404Component } from './view/error-view/nf404/nf404.component';
     AgendaComponent,
     SettingsComponent,
     GroupeComponent,
+
+
+    ProfileItemComponent,
+    PictureProfileItemComponent,
+    LoginComponent,
+    RegisterComponent,
     GroupMembershipSubmenuComponent,
     ClickOutsideDirective,
     JoinGroupComponent,
@@ -76,20 +95,18 @@ import { Nf404Component } from './view/error-view/nf404/nf404.component';
     HorizontalNavbarComponent,
     DashboardViewComponent,
     Nf404Component
-    
-    
-    
-    
-    
-   
+
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     ToastrModule.forRoot(),
     BreadcrumbsModule.forRoot(),
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
     MatDialogModule,
     MatInputModule,
     MatFormFieldModule,
