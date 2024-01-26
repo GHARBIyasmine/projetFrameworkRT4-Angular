@@ -1,0 +1,16 @@
+.submenu {
+    
+    right: 3px;
+    position : absolute;
+    z-index: 501;
+    width: 130px;
+    
+    
+  }
+
+  .submenu-item:hover{
+    color: #303030;
+    background-color: #d5d5d597;
+  }
+
+

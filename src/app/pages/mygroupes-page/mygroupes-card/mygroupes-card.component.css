@@ -1,42 +1,67 @@
 .card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 16px;
-    margin: 8px;
-    cursor: pointer;
-    transition: box-shadow 0.2s ease-in-out;
     width: 280px;
     height: 260px;
-    display: flex;
-    flex-direction: column;
+   
   }
   
-  .card:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
-
   .card-top-head{
     border-bottom: 1px solid rgba(218, 220, 223, 0.877);
-    height: 45px;
+    height: 50px;
     display: flex;
+    justify-content: space-between;
     
+  }
+  .top-head-details {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .group-image {
+    width: 45px;
+    height: 45px;
+    background-color: rgb(199, 156, 183);
+    border-radius: 6px;
   }
   app-tag{
     margin-left: auto;
   }
-
-  .card-image{
-    
-    border: 1px solid rgba(218, 220, 223, 0.877);
-    width: 70px;
-    height:70px;
-    position: absolute;
-    top: 27px;
-    left:30px;
-    background-color: #a867b5;
-  }
-  
   .card-body{
     padding-top: 45px;
     
   }
+
+  .dots{
+    width: 20px;
+    position: relative;
+   
+  }
+
+  .dots-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    /* transition: 0.2s ease-in-out; */
+    cursor: pointer;
+    background: none;
+    border: none;
+    appearance: none;
+  }
+  .dots-btn:hover{
+    background-color: #d5d5d597
+  }
+
+  .submenu{
+    position: absolute;
+    z-index: 510; 
+    width: 120px;
+  }
+
+  .submenu-item:hover{
+    color: rgb(206, 53, 53);
+  }
+  .active{
+    background-color: #d5d5d597
+  }
+  

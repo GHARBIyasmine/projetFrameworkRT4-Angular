@@ -26,6 +26,7 @@
             ],
             "styles": [
               "src/custom-theme.scss",
+              "node_modules/angular-calendar/css/angular-calendar.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -88,6 +89,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/angular-calendar/css/angular-calendar.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -97,6 +99,6 @@
     }
   },
   "cli": {
-    "analytics": "d7039560-53e1-479d-9823-dc2bd8dc1b79"
-  }
+    "analytics": "c8037d89-2116-41e5-9efe-9c506d2456c8"
+    }
 }

@@ -1,1 +1,103 @@
-<p>settings works!</p>
+
+<div class="container my-5">
+  <div class="row justify-content-center">
+
+    <!-- Profile Card -->
+    <div class="col-12 col-md-8 mb-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-center">Profile</h5>
+          <br>
+
+          <div class="row mb-3">
+            <!-- Photo Label -->
+            <div class="col-sm-3">
+              <label class="col-sm-4 col-form-label">Photo:</label>
+            </div>
+
+            <!-- Image or Avatar -->
+            <div class="col-sm-5">
+                <app-picture-profile-item [username]="user.username" [photo]="user.imageUrl"></app-picture-profile-item>
+            </div>
+            <!-- Buttons -->
+            <div class="col-sm-4">
+              <div class="d-flex align-items-center">
+                <!-- Container for Remove Button -->
+                <div class="remove-button&-container me-2" style="width: 100px;">
+                  <button *ngIf="user.imageUrl" class="btn btn-outline-danger text-nowrap " (click)="removePhoto()">
+                    <span [innerHTML]="removeIcon"></span> Remove
+                  </button>
+                </div>
+
+                <!-- Upload Button -->
+                <button class="btn btn-outline-secondary text-nowrap" (click)="fileInput.click()">
+                  <span [innerHTML]="uploadIcon"></span> Upload
+                </button>
+                <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)" accept="image/*">
+              </div>
+            </div>
+
+          </div>
+
+          <hr>
+
+          <!-- Profile Items -->
+          <app-profile-item
+            label="Username:"
+            [value]="user.username"
+            type="text"
+            button="Edit"
+            (valueChange)="onUsernameChange($event)">
+          </app-profile-item>
+          <hr>
+
+          <app-profile-item
+            label="Email:"
+            [value]="user.email"
+            type="email"
+            button="Edit"
+            (valueChange)="onEmailChange($event)">
+          </app-profile-item>
+          <hr>
+
+          <app-profile-item
+            label="Password:"
+            [value]="user.password"
+            type="password"
+            (valueChange)="onPasswordChange($event)">
+          </app-profile-item>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notification Card -->
+    <div class="col-12 col-md-8 mb-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-center">Notifications</h5>
+          <br>
+
+          <div class="form-check form-switch">
+            <input class="form-check-input"
+                   type="checkbox"
+                   id="emailNotifications"
+                   [(ngModel)]="emailNotifications"
+                   (change)="toggleEmailNotifications()">
+            <label class="form-check-label" for="emailNotifications">
+              Email Notifications
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delete Account Button -->
+    <div class="col-12 col-md-8 mb-3 d-flex justify-content-center">
+      <button class="btn btn-danger text-center" (click)="removeAccount()">
+        Delete Account
+      </button>
+    </div>
+  </div>
+</div>
+
+

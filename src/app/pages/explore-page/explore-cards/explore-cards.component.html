@@ -1,0 +1,28 @@
+<div class="card" >
+    <div class="card-top-head">
+      <div class="group-image"></div>
+      <app-tag tagValue="Public" [tagStyle]="'public'" [style.margin.left]="'auto'"/>
+    </div>
+    <div ></div>
+    <div class="card-body">
+      <h3>Groupe name</h3>
+
+      <div class="description">
+      <small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente repellat dolores dolorum officia quidem quia in facilis. Magni, omnis? Eligendi necessitatibus error optio ab impedit inventore, sit quidem maxime aliquam!</small>
+    </div>
+    <div class="tags">
+      <app-list [items]="tab">
+        <ng-template let-item #itemTemplate>
+          <app-tag tagValue="#tag" [tagStyle]="'detail'"/>
+          </ng-template>
+    </app-list>
+    </div>
+
+    </div>
+
+    <div class="call-to-action">
+      <button class="view-more-btn">View more details</button>
+      <button class="join-btn">Join</button>
+
+    </div>
+  </div>

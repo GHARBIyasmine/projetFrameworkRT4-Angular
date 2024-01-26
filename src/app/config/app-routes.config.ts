@@ -3,5 +3,12 @@ export const APP_ROUTES = {
     inbox: 'inbox',
     explore: 'explore',
     agenda: 'agenda',
-    settings:'settings'
+    settings:'settings',
+    group: 'group'
+}
+
+export const GROUP_ROUTES ={
+    chat: 'chat',
+    files: 'files',
+    tasks: 'task-board'
 }

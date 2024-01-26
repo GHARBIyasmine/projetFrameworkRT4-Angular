@@ -13,7 +13,16 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $projetFrameworkRT4-Angular-primary: mat.define-palette(mat.$indigo-palette);
-$projetFrameworkRT4-Angular-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+$mat-theme-accent-palette: map-merge(mat.$pink-palette, ( 501: #A22042,contrast: (501: white,A100: white,A200: white,)));
+$projetFrameworkRT4-Angular-accent: mat.define-palette(
+  $mat-theme-accent-palette,
+  $default: 501,
+  $lighter: A100,
+  $darker: A200,
+  $text: 600
+);
+
 
 // The warn palette is optional (defaults to red).
 $projetFrameworkRT4-Angular-warn: mat.define-palette(mat.$red-palette);

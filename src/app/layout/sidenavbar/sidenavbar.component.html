@@ -11,9 +11,15 @@
             <li *ngFor="let menu of menus" >
               <a 
               aria-current="page"
+<<<<<<< HEAD
               [routerLinkActiveOptions]="{ exact: true }"
               routerLinkActive="active"
               [routerLink]="[ menu.route ]"
+=======
+              routerLinkActive="active"
+              [routerLink]="[menu.route] 
+                     "
+>>>>>>> 1dd9da1dd8542af32276507d620a821764ab2de1
               >
               <span class ="icon" [innerHTML]="menu.icon"></span>
       

@@ -1,0 +1,66 @@
+
+<div class="main">
+<section class="sign-in">
+  <div class="container">
+    <div class="signin-content">
+      <div class="signin-image">
+        <figure><img src="assets/images/auth-images/signin.jpg" alt="sing up image"></figure>
+        <a href="#" class="signup-image-link" (click)="redirectToRegister()" >Create an account</a>
+      </div>
+
+      <div class="signin-form">
+        <h2 class="form-title">Log in</h2>
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="register-form" id="login-form">
+          <!-- email Field -->
+          <div class="form-group">
+            <label for="email"><i class="zmdi zmdi-email"></i></label>
+            <input type="email" name="email" id="email" [(ngModel)]="user.email" #userEmail="ngModel" required email placeholder="Your Email"/>
+
+            <!-- Display error message if the email field is empty and touched -->
+            <span *ngIf="userEmail.errors?.['required'] && userEmail.touched" class="error-message">Email is required</span>
+
+            <!-- Display error message if the email format is invalid and the field is touched -->
+            <span *ngIf="userEmail.errors?.['email'] && userEmail.touched" class="error-message">Please enter a valid email</span>
+
+          </div>
+
+          <!-- Password Field -->
+          <div class="form-group">
+            <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+            <input type="password" name="your_pass" id="your_pass" [(ngModel)]="user.password" #yourPass="ngModel" required minlength="4"
+                   [class.invalid-placeholder]="yourPass.invalid && (yourPass.dirty || yourPass.touched)"
+                   placeholder="Password"/>
+            <span *ngIf="yourPass.errors?.['required'] && yourPass.touched" class="error-message">Password is required</span>
+          </div>
+
+          <!-- Remember Me Checkbox -->
+          <div class="form-group">
+            <input type="checkbox" name="remember-me" id="remember-me" [(ngModel)]="user.remember_me" class="agree-term" />
+            <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="form-group form-button">
+            <input type="submit" name="signin" id="signin" class="form-submit" value="Log in" [disabled]="!loginForm.valid"/>
+          </div>
+        </form>
+
+        <div class="social-login">
+          <span class="social-label">Or login with</span>
+          <ul class="socials">
+            <li>
+              <span [innerHTML]="FacebookIcon" alt="Facebook Icon"  ></span>
+            </li><li>
+              <span [innerHTML]="XIcon" alt="X Icon"  ></span>
+            </li><li>
+              <span [innerHTML]="GmailIcon" alt="Gmail Icon"  ></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+<!-- JS -->
+
