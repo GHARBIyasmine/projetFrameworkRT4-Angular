@@ -38,20 +38,11 @@
     display: flex;
     flex-direction: column; 
     justify-content: center; 
-<<<<<<< HEAD
-    margin-left: 10px; 
-=======
     margin-left: 10px ;
-    
->>>>>>> 1dd9da1dd8542af32276507d620a821764ab2de1
   }
   .details h4 {
     margin: 0;
     font-size: 16px;
-<<<<<<< HEAD
-=======
-    
->>>>>>> 1dd9da1dd8542af32276507d620a821764ab2de1
   }
   h4,
 .text-sm {
