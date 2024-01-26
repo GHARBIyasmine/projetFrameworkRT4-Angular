@@ -1,0 +1,20 @@
+/* Quote styles */
+.w3-container.w3-black.w3-center.w3-opacity.w3-padding-64 {
+    background-color: #333; /* Dark gray color for the Quote background */
+    color: #fff; /* White text color for the Quote content */
+  }
+  
+  /* Footer styles */
+  .w3-container.w3-padding-64.w3-center.w3-opacity {
+    background-color: #333; /* Dark gray color for the Footer background */
+    color: #fff; /* White text color for the Footer content */
+  }
+  
+  .w3-xlarge.w3-padding-32 i {
+    margin-right: 16px; /* Adjust margin for social icons in the Footer */
+  }
+  
+  .w3-xlarge.w3-padding-32 a {
+    text-decoration: none;
+    color: #fff; /* White color for global links in the Footer */
+  }

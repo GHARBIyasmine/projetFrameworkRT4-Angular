@@ -1,0 +1,180 @@
+  
+  .sidebar {
+    position: absolute;
+    width: 240px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #ffffff;
+    padding: 10px;
+    transition: all 0.3s;
+    border-right: 1px solid rgb(240, 242, 246);
+    box-shadow: 0 4px 12px 0 #b8b8b843;
+  }
+
+  .nav {
+    display: flex;
+    flex: 1;
+    margin-top: 40px;
+    
+
+  }
+  
+  .menu {
+    position: relative;
+    padding-top: 10px;
+    margin: 0;
+    width: 100%;
+    border-top: 1px solid rgba(218, 220, 223, 0.877);
+    
+  }
+  .menu ul {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    
+    /* border-bottom: 1px solid rgb(240, 242, 246); */
+  }
+  .menu ul li {
+    position: relative;
+    list-style: none;
+    margin-bottom: 5px;
+    width: 100%;
+  }
+  .menu ul li a {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #464646;
+    text-decoration: none;
+    padding: 8px 8px;
+    border-radius: 8px;
+    width: 100%;
+    flex:1;
+    width: 100%;
+    transition: all 0.3s;
+  }
+  
+  
+  .menu ul li > a:hover
+   {
+    color: #303030;
+    background-color: #d5d5d597;
+  }
+  
+  .menu ul li .text {
+    flex: 1;
+    white-space: nowrap;
+    margin-left: 10px;
+  }
+  .menu ul li .icon{
+    padding-left: 4px;
+  }
+
+  .menu-btn {
+    position: absolute;
+    right: -14px;
+    top: 38px;
+    width: 24px;
+    height: 24px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #757575;
+    border: 2px solid rgba(218, 220, 223, 0.877);
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: #c2c3c4b0;
+  }
+  .menu-btn:hover {
+    color: #464646;
+  }
+  .menu-btn {
+    transition: all 0.3s;
+  }
+  .sidebar.collapsed {
+    width: 65px;
+  }
+
+  .sidebar.collapsed .menu-btn  {
+    transform: rotate(180deg);
+  }
+ 
+  .sidebar.collapsed .menu > ul > li > a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  .sidebar.collapsed .menu > ul > li > a .text {
+    position: absolute;
+    left: 70px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #212121;
+    visibility: hidden;
+    transition: all 0.2s ease-in-out;
+    display: none;
+    opacity: 0;
+    z-index: 510;
+    
+    
+  }
+  .sidebar.collapsed .menu > ul > li > a .text::after {
+    content: "";
+    position: absolute;
+    left: -5px;
+    top: 20%;
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    background-color: #212121;
+    transform: rotate(45deg);
+    z-index: -1;
+    
+    
+  }
+  
+  .sidebar.collapsed .menu > ul > li > a:hover .text {
+    left: 50px;
+    opacity: 1;
+    visibility: visible;
+    display: flex;
+  }
+  .sidebar.collapsed .menu > ul > li > a .icon {
+    
+    margin-right: auto;
+    
+  }
+
+  .user-profile{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: 80px;
+    overflow: hidden;
+    border-top: 1px solid rgba(218, 220, 223, 0.877);
+  }
+  .menu ul li a.active{
+    color:#a22042;
+    background-color: #a2204332
+    
+  }
+
+  
+  
+  
+  
+  

@@ -1,0 +1,42 @@
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 8px;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease-in-out;
+    width: 280px;
+    height: 260px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .card-top-head{
+    border-bottom: 1px solid rgba(218, 220, 223, 0.877);
+    height: 45px;
+    display: flex;
+    
+  }
+  app-tag{
+    margin-left: auto;
+  }
+
+  .card-image{
+    
+    border: 1px solid rgba(218, 220, 223, 0.877);
+    width: 70px;
+    height:70px;
+    position: absolute;
+    top: 27px;
+    left:30px;
+    background-color: #a867b5;
+  }
+  
+  .card-body{
+    padding-top: 45px;
+    
+  }

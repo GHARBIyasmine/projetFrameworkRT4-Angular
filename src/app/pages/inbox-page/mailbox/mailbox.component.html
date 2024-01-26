@@ -1,0 +1,90 @@
+
+                    
+<div class="container">
+    <h2 class="header text-white">Your Inbox</h2>
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <!-- Checkbox Column -->
+      <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef>
+          <mat-checkbox 
+            (change)="masterToggle()"
+            [checked]="isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()"
+            [aria-label]="checkboxLabel()"
+          >
+          </mat-checkbox>
+        </mat-header-cell>
+
+
+        <mat-cell *matCellDef="let row">
+          <mat-checkbox
+            (click)="$event.stopPropagation()"
+            (change)="onCheckboxChanged(row, $event.checked)"
+            [checked]="selection.isSelected(row)"
+            [aria-label]="checkboxLabel(row)"
+          >
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
+  
+  
+      <!-- Sender Column -->
+      <ng-container matColumnDef="sender">
+        <mat-header-cell *matHeaderCellDef> Message type </mat-header-cell>
+        <mat-cell *matCellDef="let element" [ngSwitch]="element.type">
+          <span *ngSwitchCase="'publicGroupJoined'">New Member Alert </span>
+          <span *ngSwitchCase="'privateGroupJoinRequest'">New Member Alert </span>
+          <span *ngSwitchCase="'newTaskAdded'">New Task Alert </span>
+          <span *ngSwitchDefault>Unknown Type</span>
+        </mat-cell>
+      </ng-container>
+  
+    <!-- Tag Column -->
+    <ng-container matColumnDef="tag">
+      <mat-header-cell *matHeaderCellDef> Group Name </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <div class="tag" [ngStyle]="getTagStyle(element.type)">
+          {{ element.groupName }}
+        </div>
+      </mat-cell>
+    </ng-container>
+
+  <!-- Subject Column -->
+    <ng-container  matColumnDef="subject">
+      <mat-header-cell *matHeaderCellDef> Subject </mat-header-cell>
+      <mat-cell  *matCellDef="let element" >
+        <div class="details">{{ generateSubject(element) }}</div>
+      </mat-cell>
+    </ng-container>
+  
+  
+      <!-- Date Column -->
+      <ng-container matColumnDef="date">
+        <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.date | date : "shortDate" }}
+        </mat-cell>
+      </ng-container>
+  
+      <!-- Delete Column -->
+      <ng-container matColumnDef="delete">
+        <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button mat-icon-button (click)="onDelete(element)" class="delete-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="20px" height="27px" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+              </svg>
+              
+          </button>
+        </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        (click)="displayEmail(row)"
+      ></mat-row>
+    </mat-table>
+  </div>
+  

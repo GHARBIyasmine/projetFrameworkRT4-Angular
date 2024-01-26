@@ -1,0 +1,34 @@
+
+
+
+    <div class="sidebar" [ngClass]="{ 'collapsed': isSideBarCollapsed }">
+      <div class="menu-btn" (click)="toggleSidebar()" [innerHTML]="togglebtn">
+              
+      </div>
+      <div class="nav">
+        <div class="menu" >
+          <ul>
+            <li *ngFor="let menu of menus" >
+              <a 
+              aria-current="page"
+              [routerLinkActiveOptions]="{ exact: true }"
+              routerLinkActive="active"
+              [routerLink]="[ menu.route ]"
+              >
+              <span class ="icon" [innerHTML]="menu.icon"></span>
+      
+              <span class="text">{{ menu.text }}</span>
+                
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="user-profile">
+        <app-userprofile style="width:100%"/>
+      </div>
+    </div>
+    
+  
+   
+   

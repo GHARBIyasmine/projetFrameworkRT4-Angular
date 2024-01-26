@@ -1,0 +1,61 @@
+.header {
+    padding: 0 20px;
+    height: 60px;
+    background-color: #b94141; 
+}
+
+.delete-btn{
+    background: none;
+    border: none;
+    appearance: none;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.details  {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  mat-header-cell {
+    text-align: center;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  /* Center text in data cells */
+  mat-cell {
+   
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .mat-column-select {
+    flex: 0 0 70px;
+
+  }
+  
+  .mat-column-sender {
+    flex: 0 0 150px; /* Grow to fill available space, but start with 150px */
+  }
+  
+  .mat-column-tag {
+    flex: 0 0 150px;
+  }
+  
+  .mat-column-subject {
+    flex: 1 1 50px; /* Allow this to take twice as much space as sender or tag */
+  }
+  
+  .mat-column-date {
+    flex: 1 1 50px;
+  }
+  
+  .mat-column-delete {
+    flex: 0 0 100px;
+  }
+  

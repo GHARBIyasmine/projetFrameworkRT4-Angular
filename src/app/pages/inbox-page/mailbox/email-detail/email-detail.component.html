@@ -1,0 +1,88 @@
+
+<!-- email-detail.component.html -->
+
+<ng-container *ngIf="email; else loading">
+    <ng-container *ngTemplateOutlet="getTemplateForEmail(email)"></ng-container>
+  </ng-container>
+  
+  <ng-template #publicGroupJoined>
+    <!-- Template for public group joined -->
+    <body>
+    <div class="container">
+      <!-- Header -->
+      <div class="email-header">
+          <h1> New Member Joined Your Public Group !! </h1>
+      </div>
+
+      <!-- Body -->
+      <div class="email-body">
+          <p>Hello [Group Admin Name],</p>
+          <p>We're excited to let you know that {{ email?.sender }} has joined your public group [Group Name]. Welcome them to the group! </p>
+          <p>Thanks,</p>
+          
+          <p> [Your Company Name] </p>
+      </div>
+
+      <!-- Footer -->
+      <div class="email-footer">
+          If you suspect any unauthorized access, please contact our support team immediately at <a href="mailto:support@yourcompany.com">support@yourcompany.com</a>.
+      </div>
+  </div>
+</body>
+  </ng-template>
+  
+  <ng-template #privateGroupJoinRequest>
+    <body>
+      <div class="container">
+        <!-- Header -->
+        <div class="email-header">
+            <h1> Join Request for Your Private Group !! </h1>
+        </div>
+        <!-- Body -->
+        <div class="email-body">
+            <p>Hello [Group Admin Name],</p>
+            <p>{{ email?.sender }} has requested to join your private group [Group Name]. Please review their request. </p>
+            <p>Thanks,</p>
+            <p> [Your Company Name] </p>
+        </div>
+  
+        <!-- Footer -->
+        <div class="email-footer">
+            If you suspect any unauthorized access, please contact our support team immediately at <a href="mailto:support@yourcompany.com">support@yourcompany.com</a>.
+        </div>
+    </div>
+  </body>
+
+  
+    <!-- Include Accept and Discard buttons here -->
+  </ng-template>
+  
+  <ng-template #newTaskAdded>
+  
+    <body>
+      <div class="container">
+        <!-- Header -->
+        <div class="email-header">
+            <h1>  New task added !! </h1>
+        </div>
+        <!-- Body -->
+        <div class="email-body">
+            <p>Hello [Group Admin Name],</p>
+            <p>Congratulations! You have been accepted into the private group [Group Name]. Start engaging with your new group members now.</p>
+            <p>Thanks,</p>
+            <p> [Your Company Name] </p>
+        </div>
+  
+        <!-- Footer -->
+        <div class="email-footer">
+            If you suspect any unauthorized access, please contact our support team immediately at <a href="mailto:support@yourcompany.com">support@yourcompany.com</a>.
+        </div>
+    </div>
+  </body>
+    
+  </ng-template>
+  
+  <ng-template #loading>
+    <p>Loading email...</p>
+  </ng-template>
+  

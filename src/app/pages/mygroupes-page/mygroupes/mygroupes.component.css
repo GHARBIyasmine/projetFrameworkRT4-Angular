@@ -1,0 +1,31 @@
+.header{
+    height: 70px;
+    border-bottom: 1px solid rgba(218, 220, 223, 0.877);
+    width: auto;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    
+}
+
+.plus-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 37px;
+    border-radius: 5px;
+    transition: 0.2s ease-in-out;
+    
+}
+.plus-icon:hover{
+    background-color: #d5d5d597
+}
+
+a{
+    color: initial; 
+  text-decoration: none;
+}
