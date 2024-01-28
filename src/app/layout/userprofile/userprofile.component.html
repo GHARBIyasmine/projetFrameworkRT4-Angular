@@ -2,7 +2,7 @@
   <!-- In any other component's template -->
   <!-- Image or Avatar -->
   <div class="">
-    <app-picture-profile-item [username]="user.username" [photo]="user.imageUrl" [size]="40"></app-picture-profile-item>
+    <app-picture-profile-item [username]="user.username ?? ''" [photo]="user.imageUrl ?? ''" [size]="40"></app-picture-profile-item>
   </div>
 
   <div class="details">

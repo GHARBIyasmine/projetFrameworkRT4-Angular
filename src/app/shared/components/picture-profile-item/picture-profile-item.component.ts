@@ -5,7 +5,7 @@ import { DomSanitizer } from "@angular/platform-browser";
 import { ToastrService } from "ngx-toastr";
 import { MockProfilePictureService } from "../../../core/services/mock-profile-picture.service";
 import { UserService } from "../../../core/services/user.service";
-import {Person} from "../../../core/models/person";
+import {UserI} from "src/app/core/models/user.models";
 import {Subscription} from "rxjs";
 
 @Component({
@@ -13,7 +13,7 @@ import {Subscription} from "rxjs";
   templateUrl: './picture-profile-item.component.html',
   styleUrls: ['./picture-profile-item.component.css']
 })
-export class PictureProfileItemComponent implements OnInit {
+export class PictureProfileItemComponent  {
   @Input() username: string = '';
   @Input() photo: string = '';
   @Input() size: number = 50
@@ -23,7 +23,7 @@ export class PictureProfileItemComponent implements OnInit {
   private subscriptions = new Subscription();
 
 
-  user=new Person()
+  user!: UserI;
 
 
   constructor(
@@ -37,17 +37,7 @@ export class PictureProfileItemComponent implements OnInit {
   uploadIcon = this.sanitizer.bypassSecurityTrustHtml(SVG.upload);
   removeIcon = this.sanitizer.bypassSecurityTrustHtml(SVG.remove);
 
-  ngOnInit() {
-    this.subscriptions.add(this.userService.getUsername().subscribe(name => {
-      this.username = name;
-      this.updateAvatar();
-    }));
 
-    this.subscriptions.add(this.userService.getPhotoUrl().subscribe(pic => {
-      this.photo = pic;
-      this.updateAvatar();
-    }));
-  }
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();

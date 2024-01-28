@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../core/services/user.service";
-import {Person} from "../../core/models/person";
+import {UserI} from "src/app/core/models/user.models";
 
 @Component({
   selector: 'app-userprofile',
@@ -13,19 +13,19 @@ export class UserprofileComponent implements OnInit{
 
   ) {
   }
-  user = new Person()
+  user !:UserI;
   ngOnInit(): void {
-    this.userService.getUsername().subscribe((username) => {
-      this.user.username = username as string;
-    });
-    this.userService.getEmail().subscribe((email) => {
-      this.user.email = email as string;
-    });
+  //   this.userService.getUsername().subscribe((username) => {
+  //     this.user.username = username as string;
+  //   });
+  //   this.userService.getEmail().subscribe((email) => {
+  //     this.user.email = email as string;
+  //   });
 
 
-    this.userService.getPhotoUrl().subscribe((photoUrl) => {
-      this.user.imageUrl = photoUrl as string;
-    });
+  //   this.userService.getPhotoUrl().subscribe((photoUrl) => {
+  //     this.user.imageUrl = photoUrl as string;
+  //   });
+  // }
   }
-
 }

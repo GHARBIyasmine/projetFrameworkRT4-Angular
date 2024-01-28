@@ -46,6 +46,8 @@ import {MatSelectModule} from '@angular/material/select';
 import { HorizontalNavbarComponent } from './layout/horizontal-navbar/horizontal-navbar.component';
 import { DashboardViewComponent } from './view/dashboard-view/dashboard-view.component';
 import { Nf404Component } from './view/error-view/nf404/nf404.component';
+import { MatCardModule } from '@angular/material/card';
+import { HttpClientModule } from '@angular/common/http'; 
 
 
 import { CalendarModule, DateAdapter } from 'angular-calendar';
@@ -107,6 +109,9 @@ import {RegisterComponent} from './view/auth-view/register-page/register.compone
     ToastrModule.forRoot(),
     BreadcrumbsModule.forRoot(),
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
+    HttpClientModule,
+
+    //Angualr Material imports
     MatDialogModule,
     MatInputModule,
     MatFormFieldModule,
@@ -115,6 +120,7 @@ import {RegisterComponent} from './view/auth-view/register-page/register.compone
     MatIconModule,
     MatTabsModule,
     MatSelectModule,
+    MatCardModule,
     DragDropModule
 
   ],

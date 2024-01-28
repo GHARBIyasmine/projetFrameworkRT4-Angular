@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ToastrService } from "ngx-toastr";
-import { Person } from "../../../core/models/person";
+import { UserI } from "src/app/core/models/user.models";
 import { UserService } from "../../../core/services/user.service";
 import { MockProfilePictureService } from "../../../core/services/mock-profile-picture.service";
 import { SVG } from 'src/assets/svg/icons.svg';
@@ -13,7 +13,7 @@ import { SVG } from 'src/assets/svg/icons.svg';
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent implements OnInit, OnDestroy {
-  user = new Person();
+  user!: UserI;
   isEditing = false;
   emailNotifications: boolean = true;
 
@@ -35,11 +35,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.subscriptions.add(this.userService.getUser().subscribe(userData => {
-      this.user.username = userData.username;
-      this.user.email = userData.email;
-      this.user.imageUrl = userData.photo;
-    }));
+   
   }
 
   ngOnDestroy() {
