@@ -17,14 +17,14 @@
 
             <!-- Image or Avatar -->
             <div class="col-sm-5">
-                <app-picture-profile-item [username]="user.username" [photo]="user.imageUrl"></app-picture-profile-item>
+                <app-picture-profile-item ></app-picture-profile-item>
             </div>
             <!-- Buttons -->
             <div class="col-sm-4">
               <div class="d-flex align-items-center">
                 <!-- Container for Remove Button -->
                 <div class="remove-button&-container me-2" style="width: 100px;">
-                  <button *ngIf="user.imageUrl" class="btn btn-outline-danger text-nowrap " (click)="removePhoto()">
+                  <button *ngIf="user.imageUrl" class="btn btn-outline-danger text-nowrap " >
                     <span [innerHTML]="removeIcon"></span> Remove
                   </button>
                 </div>
@@ -44,7 +44,7 @@
           <!-- Profile Items -->
           <app-profile-item
             label="Username:"
-            [value]="user.username"
+            [value]="user.username ?? ''"
             type="text"
             button="Edit"
             (valueChange)="onUsernameChange($event)">
@@ -53,7 +53,7 @@
 
           <app-profile-item
             label="Email:"
-            [value]="user.email"
+            [value]="user.email ?? ''"
             type="email"
             button="Edit"
             (valueChange)="onEmailChange($event)">
@@ -62,7 +62,7 @@
 
           <app-profile-item
             label="Password:"
-            [value]="user.password"
+            [value]="user.password ?? ''"
             type="password"
             (valueChange)="onPasswordChange($event)">
           </app-profile-item>

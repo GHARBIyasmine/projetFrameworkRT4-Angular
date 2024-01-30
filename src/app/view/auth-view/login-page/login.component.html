@@ -10,38 +10,27 @@
 
       <div class="signin-form">
         <h2 class="form-title">Log in</h2>
-        <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="register-form" id="login-form">
+        <form [formGroup]="form" (ngSubmit)="login()">
           <!-- email Field -->
           <div class="form-group">
             <label for="email"><i class="zmdi zmdi-email"></i></label>
-            <input type="email" name="email" id="email" [(ngModel)]="user.email" #userEmail="ngModel" required email placeholder="Your Email"/>
-
-            <!-- Display error message if the email field is empty and touched -->
-            <span *ngIf="userEmail.errors?.['required'] && userEmail.touched" class="error-message">Email is required</span>
-
-            <!-- Display error message if the email format is invalid and the field is touched -->
-            <span *ngIf="userEmail.errors?.['email'] && userEmail.touched" class="error-message">Please enter a valid email</span>
-
+            <input type="email" matInput placeholder="Email" formControlName="email">
+            <mat-error *ngIf="email.touched && email.hasError('required')">Email is required</mat-error>
+            <mat-error *ngIf="email.touched && email.hasError('email')">Email must be valid</mat-error>
           </div>
 
           <!-- Password Field -->
           <div class="form-group">
             <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-            <input type="password" name="your_pass" id="your_pass" [(ngModel)]="user.password" #yourPass="ngModel" required minlength="4"
-                   [class.invalid-placeholder]="yourPass.invalid && (yourPass.dirty || yourPass.touched)"
-                   placeholder="Password"/>
-            <span *ngIf="yourPass.errors?.['required'] && yourPass.touched" class="error-message">Password is required</span>
+            <input type="password" matInput placeholder="Password" formControlName="password">
+            <mat-error *ngIf="password.touched && password.hasError('required')">Password is required</mat-error>
           </div>
 
-          <!-- Remember Me Checkbox -->
-          <div class="form-group">
-            <input type="checkbox" name="remember-me" id="remember-me" [(ngModel)]="user.remember_me" class="agree-term" />
-            <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
-          </div>
+         
 
           <!-- Submit Button -->
           <div class="form-group form-button">
-            <input type="submit" name="signin" id="signin" class="form-submit" value="Log in" [disabled]="!loginForm.valid"/>
+            <input type="submit" name="signin" id="signin" class="form-submit" value="Log in" [disabled]="!form.valid"/>
           </div>
         </form>
 

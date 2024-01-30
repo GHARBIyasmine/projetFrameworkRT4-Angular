@@ -8,16 +8,25 @@
       <div class="nav">
         <div class="menu" >
           <ul>
-            <li *ngFor="let menu of menus" >
+            <li *ngFor="let menu of menus"  >
               <a 
               aria-current="page"
               routerLinkActive="active"
-              [routerLink]="[menu.route] 
-                     "
-              >
+              [routerLink]="[menu.route]">
               <span class ="icon" [innerHTML]="menu.icon"></span>
       
               <span class="text">{{ menu.text }}</span>
+                
+              </a>
+            </li>
+            <li (click)="logout"  >
+              <a 
+              aria-current="page"
+              routerLinkActive="active"
+              >
+              <span class ="icon" [innerHTML]="logoutButton.icon"></span>
+      
+              <span class="text">{{ logoutButton.text }}</span>
                 
               </a>
             </li>

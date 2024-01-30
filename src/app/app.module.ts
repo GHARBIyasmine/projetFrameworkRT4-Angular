@@ -51,6 +51,8 @@ import { HorizontalNavbarComponent } from './layout/horizontal-navbar/horizontal
 import { DashboardViewComponent } from './view/dashboard-view/dashboard-view.component';
 import { Nf404Component } from './view/error-view/nf404/nf404.component';
 import { UpdateTaskComponent } from './pages/mygroupes-page/groupe/group-subpages/task-page/update-task/update-task.component';
+import { MatCardModule } from '@angular/material/card';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'; 
 
 
 import { CalendarModule, DateAdapter } from 'angular-calendar';
@@ -58,11 +60,15 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { ReactiveFormsModule} from "@angular/forms";
 import { ProfileItemComponent } from './pages/settings-page/profile-item/profile-item.component';
 import { PictureProfileItemComponent } from './shared/components/picture-profile-item/picture-profile-item.component';
-import {LoginComponent} from './view/auth-view/login-page/login.component'
 import {RegisterComponent} from './view/auth-view/register-page/register.component';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from 'src/environement';
+import { getStorage, provideStorage } from '@angular/fire/storage';
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 
 import { DatePipe } from '@angular/common';
 import { ViewDetailsComponent } from './pages/explore-page/view-details/view-details.component';
+import { LoginComponent } from './view/auth-view/login-page/login.component';
 
 
 
@@ -117,6 +123,9 @@ import { ViewDetailsComponent } from './pages/explore-page/view-details/view-det
     ToastrModule.forRoot(),
     BreadcrumbsModule.forRoot(),
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
+    HttpClientModule,
+
+    //Angualr Material imports
     MatDialogModule,
     MatInputModule,
     MatFormFieldModule,
@@ -124,14 +133,25 @@ import { ViewDetailsComponent } from './pages/explore-page/view-details/view-det
     MatRadioModule,
     MatIconModule,
     MatSelectModule,
+
     DragDropModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatChipsModule
+    MatChipsModule,
+    
+
+
+    MatCardModule,
+    
+
+    // firebase imports 
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideStorage(() => getStorage()),
+
     
 
   ],
-  providers: [DatePipe],
+  providers: [DatePipe,{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

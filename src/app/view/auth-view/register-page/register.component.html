@@ -1,58 +1,50 @@
-
 <div class="main">
-
   <!-- Sign up form -->
   <section class="signup">
     <div class="container">
       <div class="signup-content">
         <div class="signup-form">
           <h2 class="form-title">Sign up</h2>
-          <form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)" novalidate>
+
+          <form [formGroup]="form" (ngSubmit)="register()">
+
             <!-- Name Field -->
             <div class="form-group">
               <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-              <input type="text" name="name" id="name" [(ngModel)]="user.name" #name="ngModel" required
-                     [class.invalid-placeholder]="name.invalid && (name.dirty || name.touched)" placeholder="Your Name"/>
-              <span *ngIf="name.invalid && (name.dirty || name.touched)" class="error-message">Name is required</span>
+              <input type="text" matInput placeholder="Username" formControlName="username">
+              <mat-error *ngIf="username.touched && username.hasError('required')">Username is required</mat-error>
             </div>
 
             <!-- Email Field -->
             <div class="form-group">
               <label for="email"><i class="zmdi zmdi-email"></i></label>
-              <input type="email" name="email" id="email" [(ngModel)]="user.email" #email="ngModel" required
-                     [class.invalid-placeholder]="email.invalid && (email.dirty || email.touched)" placeholder="Your Email"/>
-              <span *ngIf="email.invalid && (email.dirty || email.touched)" class="error-message">Email is required</span>
+              <input type="email" matInput placeholder="Email" formControlName="email">
+              <mat-error *ngIf="email.touched && email.hasError('required')">Email is required</mat-error>
+              <mat-error *ngIf="email.touched && email.hasError('email')">Email must be valid</mat-error>
             </div>
 
             <!-- Password Field -->
             <div class="form-group">
               <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-              <input type="password" name="password" id="pass" [(ngModel)]="user.password" #password="ngModel" required minlength="4"
-                     [class.invalid-placeholder]="password.invalid && (password.dirty || password.touched)" placeholder="Password"/>
-              <span *ngIf="password.invalid && (password.dirty || password.touched)" class="error-message">Password is required and must be at least 4 characters</span>
+              <input type="password" matInput placeholder="Password" formControlName="password">
+              <mat-error *ngIf="password.touched && password.hasError('required')">Password is required</mat-error>
             </div>
 
             <!-- Confirm Password Field -->
             <div class="form-group">
               <label for="re_pass"><i class="zmdi zmdi-lock-outline"></i></label>
-              <input type="password" name="confirmPassword" id="re_pass" [(ngModel)]="user.confirmPassword" required #confirmPassword="ngModel" (ngModelChange)="checkPasswordMatch()" placeholder="Repeat your password"
-                     [class.invalid-placeholder]="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)"/>
-              <span *ngIf="passwordMismatch && confirmPassword.touched" class="error-message">Passwords do not match</span>            </div>
-
-            <!-- Terms Agreement Checkbox -->
-            <div class="form-group">
-              <input type="checkbox" name="agreeTerms" id="agree-term" [(ngModel)]="user.agreeTerms" #agreeTerms="ngModel" required
-                     [class.border-red]="agreeTerms.invalid && (agreeTerms.dirty || agreeTerms.touched)" class="agree-term" />
-              <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in <a href="#" class="term-service">Terms of service</a></label>
-              <span *ngIf="agreeTerms.invalid && (agreeTerms.dirty || agreeTerms.touched)" class="error-message">You must agree to the terms</span>
+              <input type="password" matInput placeholder="Password Confirmation" formControlName="confirmPassword">
+              <mat-error *ngIf="passwordConfirm.touched && form.hasError('passwordsNotMatching')">Passwords are not matching</mat-error>
             </div>
 
             <!-- Submit Button -->
-            <div class="form-group form-button">
-              <input type="submit" name="signup" id="signup" class="form-submit" value="Register" [disabled]="!signupForm.valid"/>
+            <div class="form-group">
+              <button class="btn btn-primary" [disabled]="!form.valid" type="submit">Register</button>
             </div>
+
           </form>
         </div>
+
         <div class="signup-image">
           <figure><img src="assets/images/auth-images/signup.jpg" alt="sign up image"></figure>
           <a [routerLink]="loginRedirectPath" class="signup-image-link">I am already member</a>
@@ -60,11 +52,4 @@
       </div>
     </div>
   </section>
-
-
 </div>
-
-  <!-- JS -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="js/main.js"></script>
-  
