@@ -19,15 +19,15 @@ import { RegisterComponent } from './view/auth-view/register-page/register.compo
 
 const routes: Routes = [
 
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'dashboard', component: DashboardViewComponent, 
+  { path: APP_ROUTES.login, component: LoginComponent },
+  { path: APP_ROUTES.register, component: RegisterComponent },
+  { path: APP_ROUTES.dashboard, component: DashboardViewComponent, 
   children: 
     [   { path: '', redirectTo: APP_ROUTES.groupes, pathMatch: 'full'},
         { path: APP_ROUTES.groupes, 
           children: [
             { path: '', component: MygroupesComponent }, 
-            { path: APP_ROUTES.group, component: GroupeComponent,
+            { path: APP_ROUTES.group + '/:groupid', component: GroupeComponent,
               children:[
                   { path: '', redirectTo: GROUP_ROUTES.tasks, pathMatch: 'full'},
                   { path: GROUP_ROUTES.tasks, component: TaskboardComponent},

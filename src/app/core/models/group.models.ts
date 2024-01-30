@@ -1,22 +1,19 @@
+import { GroupType } from "./groupType.model";
+import { Person } from "./person";
+
 export class Group {
 
+    constructor(
+        public groupid: number,
+        public groupName : string,
+        public groupDescription : string,
+        public groupType: string,
+        public groupTagList : string[],
+        public groupCode: string,
+        public groupOwner: Person,
 
-    groupName! : string;
-    groupDescription! : string;
-    groupType!: string;
-    groupTagList! : string[];
-    groupCode!: string
-    // allMembersCount! :  number;
-    // groupOwner!: string;
-    // groupMembers!: string[]; 
-    // groupImage!: string;
-    
-
-    constructor(name: string , description: string , type : string, tagList: string[]){
-        this.groupName = name;
-        this.groupDescription = description;
-        this.groupType = type;
-        this.groupTagList = tagList;
+    ){
+        
     }
 
 

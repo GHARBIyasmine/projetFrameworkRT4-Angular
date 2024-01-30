@@ -1,7 +1,9 @@
 <div class="card" >
     <div class="card-top-head">
       <div class="top-head-details">
-      <div class="group-image"></div>
+      <div class="group-image">
+        {{ groupInitials }}
+      </div>
       <app-tag [tagValue]="group.groupType | titlecase" [tagStyle]="group.groupType | lowercase"/>
      </div>
      <div class="dots" appClickOutside [isOpen]="isDotsSubmenuActive" (clickOutside)="clickedOutside(); false">

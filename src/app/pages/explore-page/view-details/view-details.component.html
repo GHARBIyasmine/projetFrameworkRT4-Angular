@@ -1,0 +1,43 @@
+<div class="dialog">
+<div mat-dialog-header class="dialog-header">
+  <div class="title">
+    <div class="group-image">  
+      {{ groupInitials}}
+    </div>
+    <h3>{{ group.groupName}}</h3>
+  </div>
+    <button type="button" class="close-button" (click)="close()">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="30" height="37" viewBox="0 0 24 24" stroke-width="1.5"
+        stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+  
+  <div mat-dialog-content class="content">
+
+        <div class="card-body">
+    
+          <div class="description">
+          <small>{{ group.groupDescription}}</small>
+        </div>
+        <div class="tags">
+          <app-list [items]="group.groupTagList">
+            <ng-template let-item #itemTemplate>
+              <app-tag [tagValue]="item" [tagStyle]="'detail'"/>
+              </ng-template>
+        </app-list>
+        </div>
+    
+        </div>
+    
+        
+      </div>
+      <mat-dialog-actions align="end">
+      <div class="call-to-action">
+        <button class="join-btn" (click)="onJoin()">Join</button>
+  
+      </div>
+    </mat-dialog-actions>
+    </div>  
+  

@@ -14,8 +14,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatIconModule} from '@angular/material/icon';
-import {MatTabsModule} from '@angular/material/tabs';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatChipsModule} from '@angular/material/chips';
+
+
 
 
 
@@ -46,6 +50,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { HorizontalNavbarComponent } from './layout/horizontal-navbar/horizontal-navbar.component';
 import { DashboardViewComponent } from './view/dashboard-view/dashboard-view.component';
 import { Nf404Component } from './view/error-view/nf404/nf404.component';
+import { UpdateTaskComponent } from './pages/mygroupes-page/groupe/group-subpages/task-page/update-task/update-task.component';
 
 
 import { CalendarModule, DateAdapter } from 'angular-calendar';
@@ -55,6 +60,9 @@ import { ProfileItemComponent } from './pages/settings-page/profile-item/profile
 import { PictureProfileItemComponent } from './shared/components/picture-profile-item/picture-profile-item.component';
 import {LoginComponent} from './view/auth-view/login-page/login.component'
 import {RegisterComponent} from './view/auth-view/register-page/register.component';
+
+import { DatePipe } from '@angular/common';
+import { ViewDetailsComponent } from './pages/explore-page/view-details/view-details.component';
 
 
 
@@ -94,8 +102,10 @@ import {RegisterComponent} from './view/auth-view/register-page/register.compone
     AddTaskComponent,
     HorizontalNavbarComponent,
     DashboardViewComponent,
-    Nf404Component
-
+    Nf404Component,
+    UpdateTaskComponent,
+    ViewDetailsComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -113,12 +123,15 @@ import {RegisterComponent} from './view/auth-view/register-page/register.compone
     MatButtonModule,
     MatRadioModule,
     MatIconModule,
-    MatTabsModule,
     MatSelectModule,
-    DragDropModule
+    DragDropModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatChipsModule
+    
 
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,12 +3,16 @@ import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
 import {DomSanitizer} from "@angular/platform-browser";
 import { SVG } from 'src/assets/svg/icons.svg';
+import { APP_ROUTES } from 'src/app/config/app-routes.config';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+
+  registerRedirectPath: string = '/' +APP_ROUTES.register
+
   constructor(
     private toastr: ToastrService,
     private router: Router,
@@ -34,13 +38,5 @@ export class LoginComponent {
     }
   }
 
-  redirectToRegister() {
-    this.router.navigate(['/register']).then(success => {
-      if (success) {
-        console.log('Navigation to register successful!');
-      } else {
-        console.log('Navigation to register failed!');
-      }
-    });
-  }
+  
 }

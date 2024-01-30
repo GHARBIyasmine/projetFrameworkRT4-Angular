@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {ToastrService} from "ngx-toastr";
+import { APP_ROUTES } from 'src/app/config/app-routes.config';
 
 @Component({
   selector: 'app-register',
@@ -7,6 +8,8 @@ import {ToastrService} from "ngx-toastr";
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+
+  loginRedirectPath :string = '/'+APP_ROUTES.login 
   constructor(
     private toastr: ToastrService
   ) {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Group } from 'src/app/core/models/group.models';
-import { GroupService } from '../services/group.service';
+import { GroupService } from '../../../core/services/group.service';
 import { ToastrService } from 'ngx-toastr';
 
 

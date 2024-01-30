@@ -1,0 +1,87 @@
+.task-card{
+    /* background-color: blue; */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    
+    
+}
+.task-tools-section{
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+}
+.task-description-section{
+    width: 100%S;
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  height: 60px;
+  padding: 0 5px;
+  font-weight: 500; 
+  font-size: 16px; 
+  line-height: 1.2; 
+}
+
+.task-info-section{
+    border-top: 1px solid rgba(218, 220, 223, 0.877);
+    height: 40px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top:10px ;
+
+}
+
+.tag{
+    background-color: #e1e3e3;
+    white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis;
+
+}
+svg{
+    margin-bottom: 2px;
+}
+
+.circle{
+    width: 25px;
+    height: 25px;
+    background-color: #e1e3e3;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 2px;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.3s ease;
+    
+}
+ .task-card:hover .circle{
+    opacity: 100%;
+} 
+
+.assignee, .no-assignee{
+    width:25px;
+    height:25px;
+    border-radius: 50%;
+    background-color: #EDFAFF;
+    color: #599BE9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+}
+
+.assignee{
+    border: 1px solid #599BE9;
+}
+
+.no-assignee{
+    border: 1px dotted #599BE9;
+}
+
+svg{
+    margin: 1px;
+}

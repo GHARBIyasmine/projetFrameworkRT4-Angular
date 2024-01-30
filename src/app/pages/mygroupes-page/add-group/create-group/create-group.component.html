@@ -17,17 +17,13 @@
       <mat-form-field appearance="outline" class="form-group">
         <mat-label for="groupName">Group Name:</mat-label>
         <input matInput type="text" id="groupName" name="groupName" [(ngModel)]="formData.groupName" #groupName="ngModel"
-          required maxlength="10" />
+          required maxlength="25" />
         <mat-error *ngIf="groupName.invalid && groupName.touched && groupName.errors?.['required']">Group name is
           required.</mat-error>
         <mat-error *ngIf="groupName.invalid && groupName.dirty && groupName.errors?.['maxlength']">Maximum 10 characters
           allowed.</mat-error>
       </mat-form-field>
   
-      <div class="upload-button" (click)="handleUploadClick()">
-        <mat-icon>cloud_upload</mat-icon>
-        <span>Upload Image</span>
-      </div>
   
       <mat-form-field appearance="outline" class="form-group">
         <mat-label for="description">Description:</mat-label>
@@ -39,9 +35,31 @@
           characters allowed.</mat-error>
       </mat-form-field>
   
-      <mat-form-field appearance="outline" class="form-group">
+      <!-- <mat-form-field appearance="outline" class="form-group">
         <mat-label for="tags">Tags (Optional):</mat-label>
         <input matInput type="text" id="tags" name="tags" [(ngModel)]="formData.tags" #tags="ngModel" />
+      </mat-form-field> -->
+
+      <mat-form-field class="example-chip-list" appearance="outline">
+        <mat-label>Tags (Optional):</mat-label>
+        <mat-chip-grid #chipGrid aria-label="Enter tags">
+          <mat-chip-row *ngFor="let tag of tags; let i = index"
+              (removed)="remove(tag)"
+              [editable]="true"
+              (edited)="edit(tag, $event)"
+              [aria-description]="'press enter to edit ' + tag.name">
+              {{tag.name}}
+              <button matChipRemove [attr.aria-label]="'remove ' + tag.name">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip-row>
+          
+          <input placeholder="New tag..."
+                 [matChipInputFor]="chipGrid"
+                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                 [matChipInputAddOnBlur]="addOnBlur"
+                 (matChipInputTokenEnd)="add($event)"/>
+        </mat-chip-grid>
       </mat-form-field>
   
       <div class="radio-group">
@@ -54,4 +72,4 @@
       <button mat-raised-button color="primary" [disabled]="groupForm.invalid" class="submit-btn">Submit</button>
     </form>
     </div>
-
+    

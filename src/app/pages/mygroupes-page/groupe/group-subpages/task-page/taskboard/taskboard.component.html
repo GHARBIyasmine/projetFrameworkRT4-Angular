@@ -9,7 +9,7 @@
     <div>
         <div class="kanban-board" cdkDropListGroup>
             <div class="to-do-section board-column">
-                <div class="section-header"> 
+                <div class="section-header todo-header"> 
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="20px" height="27px" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6Z" />
@@ -19,17 +19,18 @@
 
                     <div
                         cdkDropList
-                        [cdkDropListData]="todo"
-                        class="example-list"
+                        [cdkDropListData]="toDoTaskList"
+                        class="task-list"
                         (cdkDropListDropped)="drop($event)">
-                        <div class="example-box" *ngFor="let item of todo" cdkDrag>
-                            <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-                            {{item}}</div>
+                        <div class="task-box card" *ngFor="let item of toDoTaskList" cdkDrag>
+                            <div class="task-custom-placeholder" *cdkDragPlaceholder></div>
+                        <app-task [taskItem] = "item"/>
                         </div>
+                    </div>
             </div>
             
             <div class="in-progress-section board-column">
-                <div class="section-header"> 
+                <div class="section-header inprog-header"> 
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="20px" height="27px" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                       </svg>
@@ -37,17 +38,18 @@
                     In Progress</div>
                     <div
                         cdkDropList
-                        [cdkDropListData]="inProgress"
-                        class="example-list"
+                        [cdkDropListData]="inProgTaskList"
+                        class="task-list"
                         (cdkDropListDropped)="drop($event)">
-                        <div class="example-box" *ngFor="let item of inProgress" cdkDrag>
-                            <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-                            {{item}}</div>
+                        <div class="task-box card" *ngFor="let item of inProgTaskList" cdkDrag>
+                            <div class="task-custom-placeholder" *cdkDragPlaceholder></div>
+                        <app-task [taskItem] = "item"/>
                         </div>
-
-            </div>
+                    </div>
+            
+        </div>
             <div class="done-section board-column">
-                <div class="section-header"> 
+                <div class="section-header done-header"> 
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="20px" height="27px"viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                       </svg>
@@ -55,12 +57,12 @@
                     Done</div>
                     <div
                         cdkDropList
-                        [cdkDropListData]="done"
-                        class="example-list"
+                        [cdkDropListData]="doneTaskList"
+                        class="task-list"
                         (cdkDropListDropped)="drop($event)">
-                        <div class="example-box" *ngFor="let item of done" cdkDrag>
-                            <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-                            {{item}}</div>
+                        <div class="task-box card" *ngFor="let item of doneTaskList" cdkDrag>
+                            <div class="task-custom-placeholder" *cdkDragPlaceholder></div>
+                        <app-task [taskItem] = "item"/>
                         </div>
             </div>
         </div>

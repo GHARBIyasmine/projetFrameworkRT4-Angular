@@ -14,9 +14,9 @@
     </div>
     <div class="cards-list">
 
-        <app-list [items]="tab">
+        <app-list [items]="publicGroups">
             <ng-template let-item #itemTemplate>
-                <app-explore-cards />
+                <app-explore-cards [group]="item"/>
               </ng-template>
         </app-list>
     </div>

@@ -17,6 +17,11 @@
     height: 45px;
     background-color: rgb(199, 156, 183);
     border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 22px;
   }
 
   .description {
