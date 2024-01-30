@@ -47,7 +47,7 @@ import { HorizontalNavbarComponent } from './layout/horizontal-navbar/horizontal
 import { DashboardViewComponent } from './view/dashboard-view/dashboard-view.component';
 import { Nf404Component } from './view/error-view/nf404/nf404.component';
 import { MatCardModule } from '@angular/material/card';
-import { HttpClientModule } from '@angular/common/http'; 
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'; 
 
 
 import { CalendarModule, DateAdapter } from 'angular-calendar';
@@ -57,6 +57,10 @@ import { ProfileItemComponent } from './pages/settings-page/profile-item/profile
 import { PictureProfileItemComponent } from './shared/components/picture-profile-item/picture-profile-item.component';
 import {LoginComponent} from './view/auth-view/login-page/login.component'
 import {RegisterComponent} from './view/auth-view/register-page/register.component';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from 'src/environement';
+import { getStorage, provideStorage } from '@angular/fire/storage';
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 
 
 
@@ -121,10 +125,16 @@ import {RegisterComponent} from './view/auth-view/register-page/register.compone
     MatTabsModule,
     MatSelectModule,
     MatCardModule,
-    DragDropModule
+    DragDropModule,
+
+    // firebase imports 
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideStorage(() => getStorage()),
+
+    
 
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

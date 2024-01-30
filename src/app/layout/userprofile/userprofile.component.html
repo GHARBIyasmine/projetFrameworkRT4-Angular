@@ -1,12 +1,12 @@
 <div class="user-details">
   <!-- In any other component's template -->
   <!-- Image or Avatar -->
-  <div class="">
-    <app-picture-profile-item [username]="user.username ?? ''" [photo]="user.imageUrl ?? ''" [size]="40"></app-picture-profile-item>
+  <div class=""> 
+    <app-picture-profile-item  [size]="40"></app-picture-profile-item>
   </div>
 
   <div class="details">
-    <h4>{{user.username}}</h4>
-    <span class="text-sm text-gray-600">{{user.email}}</span>
+    <h4 *ngIf="user">{{user.username}}</h4>
+    <span *ngIf="user" class="text-sm text-gray-600">{{user.email}}</span>
   </div>
 </div>

@@ -13,7 +13,7 @@ import { SVG } from 'src/assets/svg/icons.svg';
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent implements OnInit, OnDestroy {
-  user!: UserI;
+  user!: UserI 
   isEditing = false;
   emailNotifications: boolean = true;
 
@@ -26,7 +26,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
   constructor(
     private sanitizer: DomSanitizer,
     private toastr: ToastrService,
-    private mockprofilePictureService: MockProfilePictureService,
     private userService: UserService
   ) {
     this.editIcon = this.sanitizer.bypassSecurityTrustHtml(SVG.pencil);
@@ -35,6 +34,14 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    // this.userService.getUserDetails().subscribe(
+    //   (userDetails) => {
+    //     console.log(userDetails);
+    //   },
+    //   (error: any) => {
+    //     console.error('Failed to fetch user details:', error);
+    //   }
+    // );
    
   }
 
@@ -43,39 +50,36 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   onUsernameChange(newUsername: string) {
-    this.userService.setUsername(newUsername);
+    this.user.username = newUsername  as string ;
     this.toastr.success("Username changed successfully");
   }
 
   onEmailChange(newEmail: string) {
-    this.userService.setEmail(newEmail);
+    this.user.email = newEmail as string;
     this.toastr.success("Email changed successfully");
   }
 
-  onPhotoChange(newPhotoUrl: string) {
-    this.userService.setPhotoUrl(newPhotoUrl);
-    this.toastr.success("Photo updated successfully");
-  }
+
 
   onFileSelected(event: any): void {
     const file = event.target.files[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onload = e => {
-        const imageData = reader.result as string;
-        this.mockprofilePictureService.saveProfilePicture(imageData);
-        this.userService.setPhotoUrl(imageData);
-        this.toastr.success("Photo uploaded successfully");
-      };
-      reader.readAsDataURL(file);
+        this.userService.uploadUserProfileImage(file).subscribe(
+        response => {
+          console.log('Image uploaded successfully');
+        },
+        error => {
+          console.error('Error uploading image:', error);
+        }
+      );
     }
   }
 
-  removePhoto(): void {
-    this.userService.setPhotoUrl('');
-    this.mockprofilePictureService.removePhotoFromLocalStorage();
-    this.toastr.info("Photo removed");
-  }
+  // removePhoto(): void {
+  //   this.userService.setPhotoUrl('');
+  //   this.mockprofilePictureService.removePhotoFromLocalStorage();
+  //   this.toastr.info("Photo removed");
+  // }
 
   removeAccount() {
     // Implement account removal logic here

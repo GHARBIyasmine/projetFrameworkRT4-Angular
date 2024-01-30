@@ -40,7 +40,7 @@ export class LoginComponent {
         email: this.email.value,
         password: this.password.value
       }).pipe(
-        tap(() => this.router.navigate(['/dashboard/settings']))
+        tap(() => this.router.navigate(['/dashboard/my-groupes']))
       ).subscribe();
     }
   }

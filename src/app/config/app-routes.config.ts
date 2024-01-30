@@ -4,7 +4,8 @@ export const APP_ROUTES = {
     explore: 'explore',
     agenda: 'agenda',
     settings:'settings',
-    group: 'group'
+    group: 'group',
+    login: '../login',
 }
 
 export const GROUP_ROUTES ={
