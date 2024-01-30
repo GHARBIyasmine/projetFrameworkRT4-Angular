@@ -43,6 +43,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
     //   }
     // );
    
+
+    
   }
 
   ngOnDestroy() {
