@@ -14,10 +14,10 @@ import { Tag } from '../models/tags.model';
 })
 export class CreateGroupComponent {
   formData = {
-    groupName: '',
+    name: '',
     description: '',
     tags: []as Tag[],
-    groupType: 'public', 
+    type: 'Public', 
   };
 
   constructor(public dialogRef: MatDialogRef<CreateGroupComponent>,
@@ -25,26 +25,10 @@ export class CreateGroupComponent {
 
   submitForm(form: NgForm): void {
     if (form.valid) {
-      // const newGroup = {
-      //   groupName: this.formData.groupName,
-      //   groupDescription: this.formData.description,
-      //   groupType: this.formData.groupType,
-      //   groupTagList: this.formData.tags.split(',').map(tag => tag.trim()), 
-         
-      // };
-
-      // this.groupService.createGroup(newGroup).subscribe(
-      //   (createdGroup) => {
-      //     console.log('Group created successfully:', createdGroup);
-      //     this.dialogRef.close();
-      //   },
-      //   (error) => {
-      //     console.error('Error creating group:', error);
-      //   }
-      // );
+      
       this.formData.tags=this.tags
-      console.log(this.formData)
-      console.log(this.tags)
+      this.groupService.createNewGroup(this.formData).subscribe();
+      this.close()
     }
     }
 

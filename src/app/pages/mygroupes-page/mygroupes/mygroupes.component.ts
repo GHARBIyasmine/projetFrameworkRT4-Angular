@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Group } from 'src/app/core/models/group.models';
-import { GroupService } from '../../../core/services/group.service';
+import { GroupInitialInfoI, GroupService } from '../../../core/services/group.service';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 
 @Component({
@@ -11,16 +12,39 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class MygroupesComponent implements OnInit{
  
-  groupes! : Group[];
+  groups : GroupInitialInfoI[]=[];
+  private groupAddedSubscription: Subscription;
 
   constructor(
     private groupService:GroupService,
     private toaster : ToastrService
-  ){}
+  ){
+    this.groupAddedSubscription = this.groupService.groupAdded$
+    .pipe(takeUntilDestroyed())
+    .subscribe({
+      next: newGroup => {
+        this.groups.push(newGroup);
+      },
+      error: error => {
+        console.error('Error subscribing to groupAdded$: ', error);
+      }
+    });
+  }
 
   ngOnInit(): void {
-    this.groupes =this.groupService.getFakeGroupes();
+    this.groupService.getAllGroupsByUser().subscribe({
+      next: (groups)=>{
+        this.groups= groups
+      },
+      error: (error)=>{
+
+        this.toaster.error('Problem : Access failed to API:( ')
+      }
+    }
+    )
  }
+
+
 
   isSubMenuActive : boolean = false;
 

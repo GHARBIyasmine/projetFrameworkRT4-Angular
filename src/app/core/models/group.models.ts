@@ -1,5 +1,6 @@
+import { TagComponent } from "src/app/shared/components/tag/tag.component";
 import { GroupType } from "./groupType.model";
-import { Person } from "./person";
+import { Tag } from "src/app/pages/mygroupes-page/add-group/models/tags.model";
 
 export class Group {
 
@@ -10,11 +11,18 @@ export class Group {
         public groupType: string,
         public groupTagList : string[],
         public groupCode: string,
-        public groupOwner: Person,
+        // public groupOwner: Person,
 
     ){
         
     }
 
 
+}
+
+export interface NewGroupDto {
+    name : string 
+    description : string 
+    type: string 
+    tags : Tag[]
 }

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Group } from 'src/app/core/models/group.models';
 import { AvatarGeneratorService } from 'src/app/core/services/avatar-generator.service';
+import { GroupInitialInfoI } from 'src/app/core/services/group.service';
 
 @Component({
   selector: 'app-mygroupes-card',
@@ -9,7 +9,7 @@ import { AvatarGeneratorService } from 'src/app/core/services/avatar-generator.s
   styleUrls: ['./mygroupes-card.component.css']
 })
 export class MygroupesCardComponent implements OnInit{
-  @Input() group! : Group;
+  @Input() group! :  GroupInitialInfoI;
   isDotsSubmenuActive: boolean = false;
   parentRoute!: string;
   groupInitials='';
@@ -23,7 +23,7 @@ export class MygroupesCardComponent implements OnInit{
     ){
   }
  ngOnInit(): void {
-  this.groupInitials= this.avatarGeneratorService.generateInitials(this.group.groupName); 
+  this.groupInitials= this.avatarGeneratorService.generateInitials(this.group.name); 
    
  }
 
@@ -36,6 +36,6 @@ export class MygroupesCardComponent implements OnInit{
   }
   onCardClick() {
   
-    this.router.navigate(['group/', this.group.groupid],{relativeTo: this.activatedRoute});
+    this.router.navigate(['group/', this.group.id],{relativeTo: this.activatedRoute});
   }
 }

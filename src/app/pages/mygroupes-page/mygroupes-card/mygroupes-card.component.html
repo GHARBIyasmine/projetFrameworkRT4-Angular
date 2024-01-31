@@ -4,7 +4,7 @@
       <div class="group-image">
         {{ groupInitials }}
       </div>
-      <app-tag [tagValue]="group.groupType | titlecase" [tagStyle]="group.groupType | lowercase"/>
+      <app-tag [tagValue]="group.type | titlecase" [tagStyle]="group.type | lowercase"/>
      </div>
      <div class="dots" appClickOutside [isOpen]="isDotsSubmenuActive" (clickOutside)="clickedOutside(); false">
       <button class="dots-btn" type="button" (click)="toggleDotsSubmenu()" [ngClass]="{'active': isDotsSubmenuActive}">
@@ -20,6 +20,6 @@
     </div>
     </div>
     <div class="card-body" (click)="onCardClick()">
-      <h3>{{ group.groupName }}</h3>
+      <h3>{{ group.name }}</h3>
     </div>
   </div>

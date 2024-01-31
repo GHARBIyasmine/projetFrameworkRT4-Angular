@@ -17,7 +17,7 @@ export class ExploreComponent implements OnInit {
   ){}
 
       ngOnInit(): void {
-        this.publicGroups= this.groupService.getPublicGroups()
+        // this.publicGroups= this.groupService.getPublicGroups()
       }
  
 }

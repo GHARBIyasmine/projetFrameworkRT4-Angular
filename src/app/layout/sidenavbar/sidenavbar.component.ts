@@ -59,7 +59,7 @@ export class SidenavbarComponent {
   logout(): void {
     console.log('logout');
     this.userService.logout();
-    this.router.navigate(['login']);
+    this.router.navigate(['/login']);
   }
 
 
