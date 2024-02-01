@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Group } from 'src/app/core/models/group.models';
+import { ToastrService } from 'ngx-toastr';
+import { Group, group } from 'src/app/core/models/group.models';
 import { GroupService } from 'src/app/core/services/group.service';
 
 @Component({
@@ -10,14 +11,25 @@ import { GroupService } from 'src/app/core/services/group.service';
 export class ExploreComponent implements OnInit {
 
   
-  publicGroups: Group[] =[];
+  publicGroups: group[] =[];
 
   constructor(
-    private groupService: GroupService
+    private groupService: GroupService,
+    private toaster : ToastrService
+
   ){}
 
       ngOnInit(): void {
-        // this.publicGroups= this.groupService.getPublicGroups()
+        this.groupService.getPublicGroupsWhereUserNotPartOf().subscribe({
+          next: (groups)=>{
+            this.publicGroups= groups
+          },
+          error: (error)=>{
+    
+            this.toaster.error('Problem : Access failed to API:( ')
+          }
+        }
+        )
       }
  
 }

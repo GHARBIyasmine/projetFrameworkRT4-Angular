@@ -24,7 +24,7 @@
                         (cdkDropListDropped)="drop($event)">
                         <div class="task-box card" *ngFor="let item of toDoTaskList" cdkDrag>
                             <div class="task-custom-placeholder" *cdkDragPlaceholder></div>
-                        <app-task [taskItem] = "item"/>
+                        <app-task [taskItem] = "item" [groupid]="groupid"/>
                         </div>
                     </div>
             </div>

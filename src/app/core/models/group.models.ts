@@ -19,10 +19,22 @@ export class Group {
 
 
 }
+export interface group {
 
+    id : number,
+    name: string,
+    description : string
+    type: string,
+    tags: Tag[]
+
+}
 export interface NewGroupDto {
     name : string 
     description : string 
     type: string 
     tags : Tag[]
+}
+
+export interface joinedGroupDto {
+    code: string
 }

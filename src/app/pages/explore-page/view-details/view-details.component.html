@@ -4,7 +4,7 @@
     <div class="group-image">  
       {{ groupInitials}}
     </div>
-    <h3>{{ group.groupName}}</h3>
+    <h3>{{ group.name}}</h3>
   </div>
     <button type="button" class="close-button" (click)="close()">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="30" height="37" viewBox="0 0 24 24" stroke-width="1.5"
@@ -19,12 +19,12 @@
         <div class="card-body">
     
           <div class="description">
-          <small>{{ group.groupDescription}}</small>
+          <small>{{ group.description}}</small>
         </div>
         <div class="tags">
-          <app-list [items]="group.groupTagList">
+          <app-list [items]="group.tags">
             <ng-template let-item #itemTemplate>
-              <app-tag [tagValue]="item" [tagStyle]="'detail'"/>
+              <app-tag [tagValue]="item.value" [tagStyle]="'detail'"/>
               </ng-template>
         </app-list>
         </div>

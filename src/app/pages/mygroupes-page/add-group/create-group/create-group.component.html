@@ -47,9 +47,9 @@
               (removed)="remove(tag)"
               [editable]="true"
               (edited)="edit(tag, $event)"
-              [aria-description]="'press enter to edit ' + tag.name">
-              {{tag.name}}
-              <button matChipRemove [attr.aria-label]="'remove ' + tag.name">
+              [aria-description]="'press enter to edit ' + tag.value">
+              {{tag.value}}
+              <button matChipRemove [attr.aria-label]="'remove ' + tag.value">
                 <mat-icon>cancel</mat-icon>
               </button>
             </mat-chip-row>

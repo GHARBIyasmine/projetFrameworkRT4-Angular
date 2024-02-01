@@ -47,8 +47,8 @@ export class CreateGroupComponent {
     const value = (event.value || '').trim().toLowerCase();
 
     // Add unique tag 
-    if (value && !this.tags.some(tag => tag.name === value)) {
-      this.tags.push({name: value});
+    if (value && !this.tags.some(tag => tag.value === value)) {
+      this.tags.push({value: value});
     }
 
     // Clear the input value
@@ -75,7 +75,7 @@ export class CreateGroupComponent {
 
     const index = this.tags.indexOf(tag);
     if (index >= 0) {
-      this.tags[index].name = value;
+      this.tags[index].value = value;
     }
   }
 }

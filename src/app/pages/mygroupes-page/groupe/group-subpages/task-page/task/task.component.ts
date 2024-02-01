@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
-import { Task } from '../models/task.model';
+import { Task, TaskI } from '../models/task.model';
 import { AvatarGeneratorService } from 'src/app/core/services/avatar-generator.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { UpdateTaskComponent } from '../update-task/update-task.component';
@@ -11,8 +11,9 @@ import { UpdateTaskComponent } from '../update-task/update-task.component';
 })
 export class TaskComponent implements OnInit{
 
-  @Input()taskItem!: Task
+  @Input()taskItem!: TaskI
   assigneeInitials: string =''
+  @Input()groupid!: number
 
   constructor(
     private avatarGeneratorService: AvatarGeneratorService,
@@ -21,10 +22,8 @@ export class TaskComponent implements OnInit{
     
   }
  ngOnInit(): void {
-  console.log(this.taskItem.assignee);
-  console.log(!!this.taskItem.assignee);
- this.assigneeInitials = this.avatarGeneratorService.generateInitials(this.taskItem.assignee); 
- console.log(this.assigneeInitials);
+  console.log(this.taskItem.assignedTo)
+ this.assigneeInitials = this.avatarGeneratorService.generateInitials(this.taskItem.assignedTo.username); 
 }
   
 
@@ -38,11 +37,12 @@ export class TaskComponent implements OnInit{
     taskDialogConfig.height = '550px';
     taskDialogConfig.width = '700px';
     taskDialogConfig.data = { 
-          task : this.taskItem
+          task : this.taskItem,
+          groupid: this.groupid
     }
 
     this.taskDialog.open(UpdateTaskComponent, taskDialogConfig);
-    console.log('edit task clicked')
+    
   }
 
   deleteTask(){

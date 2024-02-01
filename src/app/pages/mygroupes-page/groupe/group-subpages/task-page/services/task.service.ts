@@ -1,68 +1,77 @@
 import { Injectable } from '@angular/core';
-import { Task } from '../models/task.model';
+import { Task, TaskDto, TaskI } from '../models/task.model';
 import { TaskStatus } from '../models/taskStatus.model';
-import { Subject } from 'rxjs';
+import { EMPTY, Observable, Subject, catchError, tap } from 'rxjs';
+import { conf } from 'src/environement';
+import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
+  private API = `${conf.Backend_API}/tasks`
 
-  private newTaskSubject = new Subject<Task>();
+  private newTaskSubject = new Subject<TaskI>();
+  newTask$ = this.newTaskSubject.asObservable();
+
+  private updatedTaskSubject = new Subject<TaskI>();
+  updatedTask$ = this.updatedTaskSubject.asObservable();
+
+  constructor(
+    private httpClient: HttpClient,
+    private toastr: ToastrService,
+  ) { }
+
+  addTask(newTask: TaskDto, groupid: number): Observable<TaskI> {
+    return this.httpClient.post<TaskI>(`${this.API}/create/${groupid}`, newTask)
+    .pipe(
+      tap((task: TaskI) => {
+        this.newTaskSubject.next(task);
+      }),
+      tap(
+        () => this.toastr.success('task created successfully :)')
+      ),
+      catchError(e => {
+        this.toastr.error(`${e.error.message}`);
+        return EMPTY
+      })
+    );
+
+    
+  }
+
+  updateTask(updatedTask: TaskDto, taskid: number): Observable<TaskI> {
+    return this.httpClient.patch<TaskI>(`${this.API}/update/${taskid}`, updatedTask)
+    .pipe(
+      tap((task: TaskI) => {
+        console.log('event emited')
+        this.updatedTaskSubject.next(task);
+      }),
+      tap(
+        () => this.toastr.success('task updated successfully :)')
+      ),
+      catchError(e => {
+        this.toastr.error(`${e.error.message}`);
+        return EMPTY
+      })
+    );
+    
+  }
+
+  getAllTasksByGroup(id : number): Observable<TaskI[]>{
+    return this.httpClient.get<TaskI[]>(`${this.API}/all/${id}`)
+    .pipe(
+      catchError(e => {
+        this.toastr.error(`${e.error.message}`);
+        return EMPTY
+      })
+    );
+    
+
+  }
+ 
+
   
-
-  private toDoTasks: Task[]=[
-    new Task(1,'go to sleep', 'User 1', new Date(), TaskStatus.ToDo), 
-    new Task(2,'do chores', '', new Date(), TaskStatus.ToDo), 
-  ]
-  private inprogTasks = [
-    new Task(3,'do homework', '', new Date(), TaskStatus.InProgress),
-  ]
-
-  private doneTasks = [
-    new Task(4,'projet web', '', new Date(),TaskStatus.Done),
-  ]
-
-  constructor() { }
-
-  addTask(newTask: Task): void {
-    // this.toDoTasks.push(newTask);
-    this.newTaskSubject.next(newTask);
-    
-  }
-
-  getNewTaskObservable() {
-    return this.newTaskSubject.asObservable();
-  }
-
-  getToDoTasks(){
-    return this.toDoTasks
-  }
-
-  getInProgTasks(){
-    return this.inprogTasks
-  }
-
-  getDoneTasks(){
-    return this.doneTasks
-  }
-
-  updateTask(updatedTask: Task, taskStatus: TaskStatus): void {
-    switch (taskStatus) {
-      case TaskStatus.ToDo:
-        
-        break;
-
-        case TaskStatus.InProgress:
-          
-        break;
-    
-      default: 
-      
-        break;
-    }
-    
-    
-  }
 
 }

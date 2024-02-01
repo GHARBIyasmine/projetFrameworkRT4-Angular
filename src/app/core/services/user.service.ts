@@ -1,6 +1,6 @@
 import { ToastrService } from 'ngx-toastr';
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, combineLatest, Observable, of, throwError} from 'rxjs';
+import {BehaviorSubject, combineLatest, EMPTY, Observable, of, throwError} from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { LoginResponseI, UserI } from '../models/user.models';
@@ -25,32 +25,6 @@ export class UserService {
     private toastr: ToastrService,
   ) { }
 
-  login(user: UserI): Observable<LoginResponseI> {
-    return this.httpClient.post<LoginResponseI>(`${this.API}/login`, user).pipe(
-      tap((res: LoginResponseI) => localStorage.setItem(conf.ACCESS_TOKEN_KEY, res.access_token)),
-      tap(() => this.toastr.success('logged in successfully :)')),
-      catchError(e => {
-        this.toastr.error(`${e.error.message}`);
-        return throwError(e);
-      })
-    )
-  }
-
-  register(user: UserI): Observable<UserI> {
-    return this.httpClient.post<UserI>(`${this.API}`, user).pipe(
-     tap((createdUser: UserI) => this.toastr.success(`${createdUser.username}'s account was created`)),
-     catchError(e => {
-       this.toastr.error(`User could not be created because: ${e.error.message}`);
-       return throwError(e);
-     })
-    )
-  }
-
-
-  logout(): void {
-    localStorage.removeItem(conf.ACCESS_TOKEN_KEY);
-    this.toastr.success('Logged out successfully');
-  }
   
  
 

@@ -21,3 +21,27 @@
     background-color: #d5d5d597
 }
 
+.settings-wrapper{
+
+    position: relative;
+}
+
+.submenu{
+    position: absolute;
+    z-index: 510; 
+    width: 160px;
+
+    right:0px 
+  }
+
+  ul{
+    padding: 0;
+  }
+
+  .submenu-item:hover{
+    color: rgb(206, 53, 53);
+  }
+  .active{
+    background-color: #d5d5d597
+  }
+

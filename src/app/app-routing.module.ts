@@ -13,6 +13,7 @@ import { DashboardViewComponent } from './view/dashboard-view/dashboard-view.com
 import { Nf404Component } from './view/error-view/nf404/nf404.component';
 import { LoginComponent } from './view/auth-view/login-page/login.component';
 import { RegisterComponent } from './view/auth-view/register-page/register.component';
+import { authGuard } from './core/guards/auth.guard';
 
 
 
@@ -22,15 +23,24 @@ const routes: Routes = [
   { path: APP_ROUTES.login, component: LoginComponent },
   { path: APP_ROUTES.register, component: RegisterComponent },
   { path: APP_ROUTES.dashboard, component: DashboardViewComponent, 
+    canActivateChild: [authGuard],
+    data: { breadcrumb: { skip: true } },
   children: 
     [   { path: '', redirectTo: APP_ROUTES.groupes, pathMatch: 'full'},
         { path: APP_ROUTES.groupes, 
+          data: { breadcrumb: 'My groupes' },
           children: [
             { path: '', component: MygroupesComponent }, 
             { path: APP_ROUTES.group + '/:groupid', component: GroupeComponent,
+            data: {
+              breadcrumb: {
+                alias: 'groupName'
+              }
+            },
               children:[
                   { path: '', redirectTo: GROUP_ROUTES.tasks, pathMatch: 'full'},
-                  { path: GROUP_ROUTES.tasks, component: TaskboardComponent},
+                  { path: GROUP_ROUTES.tasks, component: TaskboardComponent, data: { breadcrumb: { skip: true } }},
+               
             ]},
           ],
 
@@ -39,10 +49,10 @@ const routes: Routes = [
         },
         
 
-        { path: APP_ROUTES.inbox, component: InboxComponent },
-        { path: APP_ROUTES.explore, component: ExploreComponent  },
-        { path: APP_ROUTES.agenda, component: AgendaComponent },
-        { path: APP_ROUTES.settings, component: SettingsComponent},
+        { path: APP_ROUTES.inbox, component: InboxComponent, data: { breadcrumb: 'Inbox' }},
+        { path: APP_ROUTES.explore, component: ExploreComponent ,data: { breadcrumb: 'Explore' } },
+        { path: APP_ROUTES.agenda, component: AgendaComponent, data: { breadcrumb: 'Agenda' }},
+        { path: APP_ROUTES.settings, component: SettingsComponent, data: { breadcrumb: 'Settings' }},
 
   
     ]

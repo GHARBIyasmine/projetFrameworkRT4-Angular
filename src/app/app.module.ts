@@ -70,6 +70,8 @@ import { DatePipe } from '@angular/common';
 import { ViewDetailsComponent } from './pages/explore-page/view-details/view-details.component';
 import { LoginComponent } from './view/auth-view/login-page/login.component';
 
+import {BreadcrumbModule} from 'xng-breadcrumb';
+
 
 
 
@@ -139,7 +141,7 @@ import { LoginComponent } from './view/auth-view/login-page/login.component';
     MatNativeDateModule,
     MatChipsModule,
     
-
+    BreadcrumbModule,
 
     MatCardModule,
     

@@ -9,9 +9,7 @@ export const APP_ROUTES = {
 
     login: 'login',
     register: 'register'
-// =======
-//     login: '../login',
-// >>>>>>> dd0ffe55039c2b58b78a1194b338eb9929e6ee8e
+
 }
 
 export const GROUP_ROUTES ={

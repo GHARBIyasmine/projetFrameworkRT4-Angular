@@ -14,6 +14,8 @@ export class MygroupesComponent implements OnInit{
  
   groups : GroupInitialInfoI[]=[];
   private groupAddedSubscription: Subscription;
+  private groupleftSubscription: Subscription;
+
 
   constructor(
     private groupService:GroupService,
@@ -29,6 +31,15 @@ export class MygroupesComponent implements OnInit{
         console.error('Error subscribing to groupAdded$: ', error);
       }
     });
+
+    this.groupleftSubscription = this.groupService.groupLeft$
+    .pipe(takeUntilDestroyed())
+    .subscribe({
+      next: groupId => {
+        const index = this.groups.findIndex(group => group.id === groupId);
+        this.groups.splice(index,1);
+      }
+    })
   }
 
   ngOnInit(): void {

@@ -7,15 +7,15 @@
     </div>
     <div ></div>
     <div class="card-body">
-      <h3>{{ group.groupName}}</h3>
+      <h3>{{ group.name}}</h3>
 
       <div class="description">
-      <small>{{ group.groupDescription}}</small>
+      <small>{{ group.description}}</small>
     </div>
     <div class="tags">
-      <app-list [items]="group.groupTagList">
+      <app-list [items]="group.tags">
         <ng-template let-item #itemTemplate>
-          <app-tag [tagValue]="item" [tagStyle]="'detail'"/>
+          <app-tag [tagValue]="item.value" [tagStyle]="'detail'"/>
           </ng-template>
     </app-list>
     </div>

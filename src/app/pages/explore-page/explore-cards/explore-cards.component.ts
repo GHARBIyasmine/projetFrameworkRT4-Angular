@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { Group } from 'src/app/core/models/group.models';
+import { Group, group } from 'src/app/core/models/group.models';
 import { AvatarGeneratorService } from 'src/app/core/services/avatar-generator.service';
 import { ViewDetailsComponent } from '../view-details/view-details.component';
+import { GroupService } from 'src/app/core/services/group.service';
 
 @Component({
   selector: 'app-explore-cards',
@@ -11,21 +12,23 @@ import { ViewDetailsComponent } from '../view-details/view-details.component';
 })
 export class ExploreCardsComponent implements OnInit{
 
-  @Input()group!: Group;
+  @Input()group!: group;
 
  groupInitials='';
    constructor(
     private avatarGeneratorService: AvatarGeneratorService,
-    public detailsDialog: MatDialog,
+    private detailsDialog: MatDialog,
+    private groupService : GroupService
    ){}
 
    ngOnInit(): void {
-    console.log(this.group.groupName)
-    this.groupInitials= this.avatarGeneratorService.generateInitials(this.group.groupName);
+    console.log(this.group.name)
+    console.log(this.group.tags)
+    this.groupInitials= this.avatarGeneratorService.generateInitials(this.group.name);
    }
 
    onJoin() {
-    console.log('join clicked')
+    this.groupService.joinPublicGroup(this.group.id).subscribe()
     }
     onViewDetails() {
 

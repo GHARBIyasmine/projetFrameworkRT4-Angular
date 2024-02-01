@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Group } from 'src/app/core/models/group.models';
+import { Group, group } from 'src/app/core/models/group.models';
 
 @Component({
   selector: 'app-view-details',
@@ -11,11 +11,11 @@ export class ViewDetailsComponent {
 onJoin() {
 throw new Error('Method not implemented.');
 }
- group!: Group;
+ group!: group;
  groupInitials: string =''
 
   constructor(public dialogRef: MatDialogRef<ViewDetailsComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: {group: Group ; groupInitials: string}
+    @Inject(MAT_DIALOG_DATA) public data: {group: group ; groupInitials: string}
    ) {
       this.group= data.group;
       this.groupInitials=data.groupInitials

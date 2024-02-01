@@ -1,11 +1,11 @@
-import { UserService } from './../../../core/services/user.service';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import {ToastrService} from "ngx-toastr";
 import { APP_ROUTES } from 'src/app/config/app-routes.config';
 import { tap } from 'rxjs';
 import { CustomValidators } from 'src/app/core/validators/custom-validators';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +17,7 @@ export class RegisterComponent {
   loginRedirectPath :string = '/'+APP_ROUTES.login 
   constructor(
     private toastr: ToastrService,
-    private userService: UserService,
+    private authService: AuthService,
     private router : Router,
 
   ) {
@@ -35,7 +35,7 @@ form : FormGroup = new FormGroup({
 
  register(){
   if(this.form.valid){
-    this.userService.register({
+    this.authService.register({
       email : this.email.value,
       password : this.password.value,
       username : this.username.value,

@@ -17,7 +17,7 @@
           type="text"
           id="taskDescription"
           name="taskDescription"
-          [(ngModel)]="formData.taskDescription"
+          [(ngModel)]="formData.description"
           #taskDescription="ngModel"
           required
           minlength="2"
@@ -34,7 +34,7 @@
     <mat-label>Choose a duedate</mat-label>
     <input 
       matInput [matDatepicker]="picker" 
-      name="taskDate" [(ngModel)]="formData.taskDate" 
+      name="taskDate" [(ngModel)]="formData.dueDate" 
       #taskDate="ngModel" required>
     <mat-hint>MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>

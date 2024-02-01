@@ -3,7 +3,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { SidenavbarService } from './services/sidenavbar.service';
 import { SVG } from 'src/assets/svg/icons.svg';
 import { APP_ROUTES } from 'src/app/config/app-routes.config';
-import { UserService } from 'src/app/core/services/user.service';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidenavbar',
@@ -11,12 +12,13 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./sidenavbar.component.css']
 })
 export class SidenavbarComponent {
-  router: any;
+  
 
  
-  constructor(private sanitizer: DomSanitizer,
+  constructor(private router: Router,
+              private sanitizer: DomSanitizer,
               private sideNavBarService: SidenavbarService,
-              private userService: UserService,
+              private authService: AuthService,
               ) {
     
   }
@@ -58,8 +60,8 @@ export class SidenavbarComponent {
 
   logout(): void {
     console.log('logout');
-    this.userService.logout();
-    this.router.navigate(['/login']);
+    this.authService.logout();
+    this.router.navigate([APP_ROUTES.login]);
   }
 
 

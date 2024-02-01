@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { GroupService } from 'src/app/core/services/group.service';
 
 @Component({
   selector: 'app-join-group',
@@ -9,15 +10,18 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class JoinGroupComponent {
 
-  constructor(private popUpRef: MatDialogRef<JoinGroupComponent>) {}
+  constructor(
+    private popUpRef: MatDialogRef<JoinGroupComponent>,
+    private groupService: GroupService) {}
 
   formData = {
-    inputField: '',
+    code: '',
   };
 
   submitForm(form : NgForm) {
-    console.log('with parameter : ', form.value)
+    this.groupService.joinGroupByCode(this.formData).subscribe();
     console.log('Form submitted with data:', this.formData);
+    this.close()
   }
 
 

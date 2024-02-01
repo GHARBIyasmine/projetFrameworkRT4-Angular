@@ -5,8 +5,8 @@ import {DomSanitizer} from "@angular/platform-browser";
 import { SVG } from 'src/assets/svg/icons.svg';
 import { APP_ROUTES } from 'src/app/config/app-routes.config';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserService } from 'src/app/core/services/user.service';
 import { tap } from 'rxjs';
+import { AuthService } from 'src/app/core/services/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,10 +17,9 @@ export class LoginComponent {
   registerRedirectPath: string = '/' +APP_ROUTES.register
 
   constructor(
-    private toastr: ToastrService,
     private router: Router,
     private sanitizer: DomSanitizer,
-    private userService: UserService
+    private authService: AuthService
   ) {
 
   }
@@ -40,7 +39,7 @@ export class LoginComponent {
 
   login() {
     if (this.form.valid) {
-      this.userService.login({
+      this.authService.login({
         email: this.email.value,
         password: this.password.value
       }).pipe(
