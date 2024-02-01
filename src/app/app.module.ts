@@ -52,6 +52,10 @@ import {MatSelectModule} from '@angular/material/select';
 import { HorizontalNavbarComponent } from './layout/horizontal-navbar/horizontal-navbar.component';
 import { DashboardViewComponent } from './view/dashboard-view/dashboard-view.component';
 import { Nf404Component } from './view/error-view/nf404/nf404.component';
+
+import { MatCardModule } from '@angular/material/card';
+import { HttpClientModule } from '@angular/common/http'; 
+
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { ReactiveFormsModule} from "@angular/forms";
@@ -114,6 +118,9 @@ import {RegisterComponent} from './view/auth-view/register-page/register.compone
     FormsModule,
     ReactiveFormsModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
+    HttpClientModule,
+
+    //Angualr Material imports
     MatDialogModule,
     MatInputModule,
     MatFormFieldModule,
@@ -121,6 +128,7 @@ import {RegisterComponent} from './view/auth-view/register-page/register.compone
     MatRadioModule,
     MatTabsModule,
     MatSelectModule,
+    MatCardModule,
     DragDropModule
 
 

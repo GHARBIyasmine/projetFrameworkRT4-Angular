@@ -1,8 +1,7 @@
 /* Header styles */
 .w3-container.w3-red.w3-center {
     padding: 128px 16px;
-    background-color: #f44336; /* Red color for the Header background */
-    color: #fff; /* White text color for Header content */
+    color: #fff; 
   }
   
   .w3-margin.w3-jumbo {
@@ -10,12 +9,3 @@
   }
 
 
-/* Simple List Styles for Red Container */
-ul.custom-list {
-    padding-left: 40px; /* Padding for alignment */
-    color: #fff; /* White text color for contrast against the red background */
-}
-
-ul.custom-list li {
-    margin-bottom: 10px; /* Space between list items */
-}
