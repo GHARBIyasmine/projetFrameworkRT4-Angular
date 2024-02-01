@@ -4,6 +4,7 @@ import { SidenavbarService } from './services/sidenavbar.service';
 import { SVG } from 'src/assets/svg/icons.svg';
 import { APP_ROUTES } from 'src/app/config/app-routes.config';
 import { UserService } from 'src/app/core/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidenavbar',
@@ -11,12 +12,13 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./sidenavbar.component.css']
 })
 export class SidenavbarComponent {
-  router: any;
+ 
 
  
   constructor(private sanitizer: DomSanitizer,
               private sideNavBarService: SidenavbarService,
               private userService: UserService,
+              private router: Router
               ) {
     
   }
@@ -56,8 +58,7 @@ export class SidenavbarComponent {
 
 
 
-  logout(): void {
-    console.log('logout');
+  logout() {
     this.userService.logout();
     this.router.navigate(['/login']);
   }

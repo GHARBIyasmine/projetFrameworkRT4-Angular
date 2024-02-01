@@ -3,7 +3,10 @@ export interface UserI {
   email?: string;
   username?: string;
   password?: string;
-  imageUrl?: string;
+  imageUrl?: {
+    type: string;
+    data: number[];
+  } | null;
 }
 
 export interface LoginResponseI {

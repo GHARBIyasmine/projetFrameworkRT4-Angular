@@ -23,11 +23,12 @@
             <div class="col-sm-4">
               <div class="d-flex align-items-center">
                 <!-- Container for Remove Button -->
-                <div class="remove-button&-container me-2" style="width: 100px;">
-                  <button *ngIf="user.imageUrl" class="btn btn-outline-danger text-nowrap " >
+                <div class="remove-button-container me-2" style="width: 100px;">
+                  <button *ngIf="user?.imageUrl" class="btn btn-outline-danger text-nowrap" (click)="removePhoto()">
                     <span [innerHTML]="removeIcon"></span> Remove
                   </button>
                 </div>
+                
 
                 <!-- Upload Button -->
                 <button class="btn btn-outline-secondary text-nowrap" (click)="fileInput.click()">
@@ -44,7 +45,7 @@
           <!-- Profile Items -->
           <app-profile-item
             label="Username:"
-            [value]="user.username ?? ''"
+            [value]="user?.username ?? ''"
             type="text"
             button="Edit"
             (valueChange)="onUsernameChange($event)">
@@ -53,7 +54,7 @@
 
           <app-profile-item
             label="Email:"
-            [value]="user.email ?? ''"
+            [value]="user?.email ?? ''"
             type="email"
             button="Edit"
             (valueChange)="onEmailChange($event)">
@@ -62,9 +63,9 @@
 
           <app-profile-item
             label="Password:"
-            [value]="user.password ?? ''"
+            [value]="''"
             type="password"
-            (valueChange)="onPasswordChange($event)">
+            (passwordChange)="onPasswordChange($event)">
           </app-profile-item>
         </div>
       </div>

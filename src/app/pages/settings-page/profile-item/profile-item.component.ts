@@ -19,6 +19,7 @@ export class ProfileItemComponent {
   @Input() value: string = '';
   @Input() type: string = '';
   @Output() valueChange = new EventEmitter<string>();
+  @Output() passwordChange = new EventEmitter<{ newPassword: string, confirmPassword: string }>();
 
   editedValue: string = '';
   editMode: boolean = false;
@@ -41,7 +42,11 @@ export class ProfileItemComponent {
   }
 
   save() {
-    this.valueChange.emit(this.editedValue);
+    if (this.type === 'password') {
+      this.passwordChange.emit({ newPassword: this.newPassword, confirmPassword: this.confirmPassword });
+    } else {
+      this.valueChange.emit(this.editedValue);
+    }
     this.editMode = false;
   }
 

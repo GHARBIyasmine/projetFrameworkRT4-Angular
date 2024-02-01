@@ -1,6 +1,6 @@
-import { Component, Input, OnInit, OnDestroy, SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { AvatarGeneratorService } from "../../../core/services/avatar-generator.service";
-import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
+import { DomSanitizer } from "@angular/platform-browser";
 import { ToastrService } from "ngx-toastr";
 import { UserService } from "../../../core/services/user.service";
 import { UserI } from "src/app/core/models/user.models";
@@ -11,12 +11,13 @@ import { Subscription } from "rxjs";
   templateUrl: './picture-profile-item.component.html',
   styleUrls: ['./picture-profile-item.component.css']
 })
-export class PictureProfileItemComponent implements OnInit {
- 
-  @Input() size: number = 50;
-  avatarUrl:string = '';
+export class PictureProfileItemComponent implements OnInit, OnDestroy {
+
+@Input()  size: number = 50;
+  avatarUrl: string = '';
   photo: string = '';
   user!: UserI;
+  private subscription!: Subscription;
 
   constructor(
     private avatarService: AvatarGeneratorService,
@@ -25,34 +26,41 @@ export class PictureProfileItemComponent implements OnInit {
     private userService: UserService,
   ) {}
 
-  
-    ngOnInit() {
-    this.fetchUsernameAndGenerateAvatar();
+  ngOnInit() {
+    this.subscription = this.userService.userData$.subscribe(
+      (userData: UserI | null) => {
+        if (userData) {
+          this.user = userData;
+          if (this.user.imageUrl == null ) {
+            this.GenerateAvatar();
+          } else {
+            this.photo = this.userService.imageBufferToBase64(this.user.imageUrl.data);
 
-    }
-
-
-  private fetchUsernameAndGenerateAvatar() {
-    this.userService.getUsername().subscribe(
-      (username: string) => {
-        console.log(username);
-        this.avatarUrl = this.avatarService.generateAvatar(username);
+          }
+        }
       },
-      (error: any) => {
-        console.error('Failed to fetch username:', error);
+      error => {
+        console.error('Error retrieving user data:', error);
+        this.GenerateAvatar();
       }
     );
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['username'] && !this.photo) {
-      this.fetchUsernameAndGenerateAvatar();
+  private GenerateAvatar() {
+    if (this.user && this.user.username) {
+      this.avatarUrl = this.avatarService.generateAvatar(this.user.username);
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
     }
   }
 
   removePhoto() {
-    this.user.imageUrl = '';
-    this.fetchUsernameAndGenerateAvatar();
-    this.toaster.warning("Photo removed!");
-  }
+    this.userService.removeUserProfileImage();
+}
+
+
 }
