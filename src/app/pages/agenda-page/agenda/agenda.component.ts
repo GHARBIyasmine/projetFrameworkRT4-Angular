@@ -1,6 +1,10 @@
 import {Component} from '@angular/core';
 import {CalendarEvent, CalendarView} from "angular-calendar";
 import {isSameDay, isSameMonth} from "date-fns";
+import { Subscription } from 'rxjs';
+import { UserI } from 'src/app/core/models/user.models';
+import { TaskAgendaService } from 'src/app/core/services/task-agenda.service';
+import { UserService } from 'src/app/core/services/user.service';
 @Component({
   selector: 'app-agenda',
   templateUrl: './agenda.component.html',
@@ -13,15 +17,43 @@ export class AgendaComponent {
   activeDayIsOpen: boolean = false;
   events: CalendarEvent[]=[];
 
-  constructor() {
-    const event1 = {
-      title:"Projet Web",
-      start : new Date("2024-01-20")
+  user!: UserI;
+  private subscription!: Subscription;
 
-    }
-    this.events.push(event1);
+  constructor(
+    private taskService : TaskAgendaService ,
+    private userService: UserService,
+    
+    ) {  }
+  
+  ngOnInit() {
+    this.loadTasks();
   }
 
+  loadTasks() {
+    this.subscription = this.userService.userData$.subscribe(
+      (userData: UserI | null) => {
+        if (userData) {
+          this.user = userData;
+        }
+      }
+    );
+      if (this.user.id) {
+        const userId = this.user.id;
+        console.log('userId:', userId);
+        this.taskService.getTasks(userId).subscribe(tasks => {
+          tasks.forEach(task => {
+            const event: CalendarEvent = {
+              title: task.description,
+              start: new Date(task.dueDate),
+            };
+            this.events.push(event);
+          });
+        }, error => {
+          console.error('Error fetching tasks:', error);
+        });
+      }
+  }
 
   setView(view: CalendarView) {
     this.view=view;

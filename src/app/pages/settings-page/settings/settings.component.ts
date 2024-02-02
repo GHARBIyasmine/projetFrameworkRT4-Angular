@@ -1,3 +1,4 @@
+import { AvatarGeneratorService } from './../../../core/services/avatar-generator.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
@@ -12,8 +13,16 @@ import { SVG } from 'src/assets/svg/icons.svg';
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.css']
 })
-export class SettingsComponent implements OnInit, OnDestroy {
-  user!: UserI 
+export class SettingsComponent implements OnInit {
+  user: UserI | null= {
+    username: '',
+    email: '',
+    password: '',
+    imageUrl: {
+      type: '',
+      data: []
+    }
+  } 
   isEditing = false;
   emailNotifications: boolean = true;
 
@@ -21,7 +30,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
   uploadIcon: SafeHtml;
   removeIcon: SafeHtml;
 
-  private subscriptions = new Subscription();
+  private subscription!: Subscription;
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -32,36 +41,44 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.uploadIcon = this.sanitizer.bypassSecurityTrustHtml(SVG.upload);
     this.removeIcon = this.sanitizer.bypassSecurityTrustHtml(SVG.remove);
   }
-
-  ngOnInit(): void {
-    // this.userService.getUserDetails().subscribe(
-    //   (userDetails) => {
-    //     console.log(userDetails);
-    //   },
-    //   (error: any) => {
-    //     console.error('Failed to fetch user details:', error);
-    //   }
-    // );
-   
-
-    
+  ngOnInit() {
+    this.subscription = this.userService.userData$.subscribe(
+      (userData: UserI | null) => {
+        if (userData) {
+          this.user = userData;
+        }
+      },
+      error => {
+        console.error('Error retrieving user data:', error);
+      }
+    );
   }
-
-  ngOnDestroy() {
-    this.subscriptions.unsubscribe();
-  }
+  
 
   onUsernameChange(newUsername: string) {
-    this.user.username = newUsername  as string ;
-    this.toastr.success("Username changed successfully");
+    console.log("this is the new username:", newUsername);
+    if (this.user !== null) {
+      this.user.username = newUsername as string;
+      this.userService.updateUser(this.user.id as number, this.user).subscribe();   
+    }
+  }
+
+  onPasswordChange(event: { newPassword: string, confirmPassword: string }) {
+    if (event.newPassword !== event.confirmPassword) {
+      return;
+    }
+    this.userService.updatePassword(event.newPassword).subscribe();
   }
 
   onEmailChange(newEmail: string) {
-    this.user.email = newEmail as string;
-    this.toastr.success("Email changed successfully");
+    if (this.user !== null) {
+      if (this.user.id !== undefined) {
+        this.user.email = newEmail as string;
+        this.userService.updateUser(this.user.id as number, this.user).subscribe();
+      } else {
+        this.toastr.error("User id is undefined");}
+    }
   }
-
-
 
   onFileSelected(event: any): void {
     const file = event.target.files[0];
@@ -69,6 +86,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
         this.userService.uploadUserProfileImage(file).subscribe(
         response => {
           console.log('Image uploaded successfully');
+          
         },
         error => {
           console.error('Error uploading image:', error);
@@ -77,11 +95,17 @@ export class SettingsComponent implements OnInit, OnDestroy {
     }
   }
 
-  // removePhoto(): void {
-  //   this.userService.setPhotoUrl('');
-  //   this.mockprofilePictureService.removePhotoFromLocalStorage();
-  //   this.toastr.info("Photo removed");
-  // }
+  removePhoto(): void {
+    this.userService.removeUserProfileImage().subscribe(
+      response => {
+        console.log('Profile image removed successfully');
+      },
+      error => {
+        console.error('Error removing profile image:', error);
+      }
+    );
+  }
+  
 
   removeAccount() {
     // Implement account removal logic here
@@ -94,7 +118,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
     // Toggle email notifications logic
   }
 
-  onPasswordChange(newPassword: string) {
-    // Password change logic
-  }
+
+ 
+
+
 }

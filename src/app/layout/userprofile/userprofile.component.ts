@@ -13,19 +13,15 @@ export class UserprofileComponent implements OnInit{
 
   ) {
   }
-  user !:UserI;
-  ngOnInit(): void {
-  //   this.userService.getUsername().subscribe((username) => {
-  //     this.user.username = username as string;
-  //   });
-  //   this.userService.getEmail().subscribe((email) => {
-  //     this.user.email = email as string;
-  //   });
+
+  user: UserI | null = null;
 
 
-  //   this.userService.getPhotoUrl().subscribe((photoUrl) => {
-  //     this.user.imageUrl = photoUrl as string;
-  //   });
-  // }
+
+  ngOnInit(){
+    this.userService.getUserData();
+    this.userService.userData$.subscribe((u: UserI | null) => {
+      this.user = u;
+    });
   }
 }
